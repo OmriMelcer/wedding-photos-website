@@ -65,3 +65,10 @@ pipeline:
       dancing:
         start: "18:40"
         end: "23:59"
+
+# R2 non-secret config. Credentials come from env vars:
+#   R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY (see upload.py)
+r2:
+  bucket: "your-bucket-name"
+  endpoint: "https://ACCOUNT_ID.r2.cloudflarestorage.com"
+  r2_public_url: "https://pub-REPLACE_ME.r2.dev"
