@@ -14,7 +14,7 @@ The project builds in three horizontal layers: first the Python pipeline that ac
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Photo Acquisition** - Automated download of all photo sources to local folders with manual fallback (completed 2026-05-16)
-- [ ] **Phase 2: Pipeline Processing** - EXIF extraction, photographer tagging, CLIP embeddings, event cluster assignment, confidence scoring, and resize
+- [x] **Phase 2: Pipeline Processing** - EXIF extraction, photographer tagging, CLIP embeddings, event cluster assignment, confidence scoring, and resize (completed 2026-05-16)
 - [ ] **Phase 3: Pipeline Upload** - Compressed images and metadata.json pushed to Cloudflare R2 via config-driven upload script
 - [ ] **Phase 4: React Site** - Masonry gallery, lightbox, photographer/phase filters, Hebrew RTL UI, and face-filter gating
 - [ ] **Phase 5: Infrastructure & Deployment** - R2 bucket public access, Cloudflare Pages deploy, end-to-end live site
