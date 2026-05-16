@@ -44,3 +44,20 @@ photographers:
 
 pipeline:
   confidence_threshold: 0.7  # minimum cluster_confidence for Phase 2 cluster review
+  events:
+    time_windows:
+      prep:
+        start: "08:00"
+        end: "14:00"
+      photoshooting:
+        start: "14:00"
+        end: "16:10"
+      dining:
+        start: "16:10"
+        end: "18:00"
+      hupa:
+        start: "18:00"
+        end: "18:40"
+      dancing:
+        start: "18:40"
+        end: "23:59"

@@ -1,0 +1,7 @@
+*.venv
+*.png
+*.jpg
+*.jpeg
+*.zip
+pipeline/output/
+__pycache__/
