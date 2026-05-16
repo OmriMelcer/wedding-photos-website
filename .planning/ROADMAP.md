@@ -63,7 +63,7 @@ Plans:
 Plans:
 **Wave 1** *(test infrastructure + config + deps)*
 
-- [ ] 02-01-PLAN.md — Wave 0 foundation: install open-clip-torch/scikit-learn/pytest, scaffold pipeline/tests/, add events.time_windows to config.yaml, write RED test stubs for every PIPE-0X requirement
+- [x] 02-01-PLAN.md — Wave 0 foundation: install open-clip-torch/scikit-learn/pytest, scaffold pipeline/tests/, add events.time_windows to config.yaml, write RED test stubs for every PIPE-0X requirement
 
 **Wave 2** *(blocked on Wave 1 — needs tests + config)*
 
@@ -132,7 +132,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
-| 2. Pipeline Processing | 0/5 | Not started | - |
+| 2. Pipeline Processing | 1/5 | In Progress|  |
 | 3. Pipeline Upload | 0/TBD | Not started | - |
 | 4. React Site | 0/TBD | Not started | - |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
