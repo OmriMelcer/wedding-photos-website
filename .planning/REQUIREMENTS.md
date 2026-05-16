@@ -30,16 +30,16 @@
 ### Site — Gallery
 
 - [x] **GALL-01**: metadata.json fetched from R2 on page load; all filtering and state managed in-memory
-- [ ] **GALL-02**: Photos displayed in a responsive masonry grid using thumbnail URLs, with the grid visually grouped into sections by wedding phase, each section headed by a Hebrew phase title
-- [ ] **GALL-03**: Lightbox opens on photo click, displaying the full-resolution image
-- [ ] **GALL-04**: Lightbox supports previous/next navigation through the currently filtered photo set
+- [x] **GALL-02**: Photos displayed in a responsive masonry grid using thumbnail URLs, with the grid visually grouped into sections by wedding phase, each section headed by a Hebrew phase title
+- [x] **GALL-03**: Lightbox opens on photo click, displaying the full-resolution image
+- [x] **GALL-04**: Lightbox supports previous/next navigation through the currently filtered photo set
 
 ### Site — Filters
 
 - [x] **FILT-01**: User can filter photos by photographer (multi-select: A, B, C)
 - [x] **FILT-02**: User can filter photos by wedding phase (multi-select across all 5 phases)
 - [x] **FILT-03**: Clear all filters button resets the view to all photos
-- [ ] **FILT-04**: Face filter is hidden when people.length === 0 (enables Phase 2 with no code changes)
+- [x] **FILT-04**: Face filter is hidden when people.length === 0 (enables Phase 2 with no code changes)
 
 ### Site — Design
 
@@ -47,7 +47,7 @@
 
 ### Site — Localization
 
-- [ ] **I18N-01**: All displayed UI text is in Hebrew
+- [x] **I18N-01**: All displayed UI text is in Hebrew
 - [x] **I18N-02**: Page layout uses RTL (right-to-left) direction
 - [x] **I18N-03**: Event phase cluster keys (prep, photoshooting, dining, hupa, dancing) mapped to Hebrew display strings; English-key → Hebrew-string mapping is a config entry so titles can be updated without code changes
 
@@ -93,15 +93,15 @@
 | UPLD-02 | Phase 3 | Pending |
 | UPLD-03 | Phase 3 | Pending |
 | GALL-01 | Phase 4 | Complete |
-| GALL-02 | Phase 4 | Pending |
-| GALL-03 | Phase 4 | Pending |
-| GALL-04 | Phase 4 | Pending |
+| GALL-02 | Phase 4 | Complete |
+| GALL-03 | Phase 4 | Complete |
+| GALL-04 | Phase 4 | Complete |
 | FILT-01 | Phase 4 | Complete |
 | FILT-02 | Phase 4 | Complete |
 | FILT-03 | Phase 4 | Complete |
-| FILT-04 | Phase 4 | Pending |
+| FILT-04 | Phase 4 | Complete |
 | DSGN-01 | Phase 4 | Complete |
-| I18N-01 | Phase 4 | Pending |
+| I18N-01 | Phase 4 | Complete |
 | I18N-02 | Phase 4 | Complete |
 | I18N-03 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Pending |

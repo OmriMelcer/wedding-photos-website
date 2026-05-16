@@ -130,7 +130,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 — needs hooks)*
 
-- [ ] 04-03-PLAN.md — App.jsx wiring + 8 components (Filters, Gallery, GallerySection, PhotoCard, Lightbox, LoadingSkeleton, ErrorState, EmptyState) + tests covering FILT-04, GALL-02, GALL-03, GALL-04
+- [x] 04-03-PLAN.md — App.jsx wiring + 8 components (Filters, Gallery, GallerySection, PhotoCard, Lightbox, LoadingSkeleton, ErrorState, EmptyState) + tests covering FILT-04, GALL-02, GALL-03, GALL-04
 
 **Wave 4** *(blocked on Wave 3 — needs running site)*
 
@@ -159,5 +159,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
-| 4. React Site | 2/4 | In Progress|  |
+| 4. React Site | 3/4 | In Progress|  |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
