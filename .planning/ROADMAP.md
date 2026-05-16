@@ -13,7 +13,7 @@ The project builds in three horizontal layers: first the Python pipeline that ac
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Photo Acquisition** - Automated download of all photo sources to local folders with manual fallback
+- [x] **Phase 1: Photo Acquisition** - Automated download of all photo sources to local folders with manual fallback (completed 2026-05-16)
 - [ ] **Phase 2: Pipeline Processing** - EXIF extraction, photographer tagging, CLIP embeddings, event cluster assignment, confidence scoring, and resize
 - [ ] **Phase 3: Pipeline Upload** - Compressed images and metadata.json pushed to Cloudflare R2 via config-driven upload script
 - [ ] **Phase 4: React Site** - Masonry gallery, lightbox, photographer/phase filters, Hebrew RTL UI, and face-filter gating
@@ -38,12 +38,12 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Config skeleton + Google Photos downloader (pipeline/config.yaml, pipeline/acquire_google.py)
-- [ ] 01-02-PLAN.md — pic-time gallery downloader (pipeline/acquire_pictime.py)
+- [x] 01-01-PLAN.md — Config skeleton + Google Photos downloader (pipeline/config.yaml, pipeline/acquire_google.py)
+- [x] 01-02-PLAN.md — pic-time gallery downloader (pipeline/acquire_pictime.py)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-03-PLAN.md — Manual download fallback documentation (docs/manual-download.md)
+- [x] 01-03-PLAN.md — Manual download fallback documentation (docs/manual-download.md)
 
 ### Phase 2: Pipeline Processing
 
@@ -110,7 +110,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Photo Acquisition | 0/3 | Not started | - |
+| 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 0/TBD | Not started | - |
 | 3. Pipeline Upload | 0/TBD | Not started | - |
 | 4. React Site | 0/TBD | Not started | - |
