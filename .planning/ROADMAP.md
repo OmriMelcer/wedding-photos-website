@@ -117,8 +117,24 @@ Plans:
   5. All UI text, filter labels, and phase headings are in Hebrew with RTL layout; phase key-to-Hebrew mapping is a config entry, not hard-coded
   6. The face filter control is absent from the page when people.length === 0
 
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 4 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 04-01-PLAN.md — Scaffold site/ (Vite + React 19 + Tailwind v4 + shadcn + Heebo + Vitest), RTL HTML shell, config.js canonical map, synthetic metadata.json fixture, Wave-0 tests
+
+**Wave 2** *(blocked on Wave 1 — needs scaffold + config.js + fixture)*
+
+- [ ] 04-02-PLAN.md — usePhotos (fetch-once) + useFilters (AND-across/OR-within, sort_key order, clearAll) hooks + tests covering GALL-01, FILT-01, FILT-02, FILT-03
+
+**Wave 3** *(blocked on Wave 2 — needs hooks)*
+
+- [ ] 04-03-PLAN.md — App.jsx wiring + 8 components (Filters, Gallery, GallerySection, PhotoCard, Lightbox, LoadingSkeleton, ErrorState, EmptyState) + tests covering FILT-04, GALL-02, GALL-03, GALL-04
+
+**Wave 4** *(blocked on Wave 3 — needs running site)*
+
+- [ ] 04-04-PLAN.md — Visual & interactive verification checkpoint (DSGN-01, I18N-01, I18N-02, GALL-02 responsive, GALL-04 navigation, FILT-04 DOM absence)
 
 ### Phase 5: Infrastructure & Deployment
 
@@ -143,5 +159,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
-| 4. React Site | 0/TBD | Not started | - |
+| 4. React Site | 0/4 | Not started | - |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
