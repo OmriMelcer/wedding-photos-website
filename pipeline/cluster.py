@@ -68,18 +68,27 @@ def _nearest_cluster(t: time, time_windows: dict) -> str:
     return best_cluster
 
 
-def assign_cluster_by_time(dt_israel: datetime, time_windows: dict) -> tuple[str, float]:
+def assign_cluster_by_time(
+    dt_israel: datetime,
+    time_windows: dict,
+    event_tz: timezone | None = None,
+) -> tuple[str, float]:
     """Return (cluster_name, confidence) for a datetime using config time windows.
+
+    event_tz is the timezone the time_windows are expressed in (from
+    pipeline.event_timezone_offset_hours in config.yaml). Defaults to ISRAEL_TZ
+    (+02:00) so existing tests that don't pass event_tz continue to work.
 
     If the time falls within a known window, confidence is 1.0.
     If it falls outside all windows, the nearest midpoint cluster is returned
     with confidence 0.5.
     """
-    # If naive (no tzinfo), treat as Israel local time directly.
+    reference_tz = event_tz if event_tz is not None else ISRAEL_TZ
+    # If naive (no tzinfo), treat as already in the reference timezone.
     if dt_israel.tzinfo is None:
         t = dt_israel.time()
     else:
-        t = dt_israel.astimezone(ISRAEL_TZ).time()
+        t = dt_israel.astimezone(reference_tz).time()
     for cluster in ORDERED_CLUSTERS:
         start = time.fromisoformat(time_windows[cluster]["start"])
         end = time.fromisoformat(time_windows[cluster]["end"])
@@ -181,6 +190,7 @@ def main() -> None:
     config = _load_config()
     time_windows = config["pipeline"]["events"]["time_windows"]
     threshold = float(config["pipeline"].get("confidence_threshold", 0.7))
+    event_tz = timezone(timedelta(hours=int(config["pipeline"].get("event_timezone_offset_hours", 2))))
 
     # 3. Validate time_windows covers all ORDERED_CLUSTERS
     missing = [c for c in ORDERED_CLUSTERS if c not in time_windows]
@@ -207,7 +217,7 @@ def main() -> None:
     for entry in catalog:
         if entry.get("has_exif") and entry.get("timestamp") is not None:
             dt = datetime.fromisoformat(entry["timestamp"])
-            cluster, conf = assign_cluster_by_time(dt, time_windows)
+            cluster, conf = assign_cluster_by_time(dt, time_windows, event_tz)
             entry["_cluster"] = cluster
             entry["_confidence"] = conf
 

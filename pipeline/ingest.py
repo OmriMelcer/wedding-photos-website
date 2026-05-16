@@ -66,8 +66,13 @@ def _resolve_output_dir(output_dir_str: str) -> Path:
     return resolved
 
 
-def extract_timestamp(img_path: Path) -> datetime | None:
+def extract_timestamp(img_path: Path, camera_utc_offset_hours: int = 2) -> datetime | None:
     """Extract and return timezone-aware datetime from JPEG EXIF data.
+
+    Uses camera_utc_offset_hours (from config.yaml) to set the correct UTC offset
+    for DateTimeOriginal — OffsetTimeOriginal is ignored because it is unreliable
+    across the three camera systems used at this wedding (abir_sultan=+02:00/IST,
+    inbal_zeldin=+03:00/IDT, magnate=+00:00 tag but actual IDT).
 
     Returns None if DateTimeOriginal is missing or blank (e.g. film scans).
     """
@@ -76,15 +81,12 @@ def extract_timestamp(img_path: Path) -> datetime | None:
 
     raw_dt = exif_data.get(DT_ORIGINAL_TAG)
     if not raw_dt or not raw_dt.strip():
-        # RESEARCH.md Pitfall #3: film scans have blank DateTimeOriginal — return None.
+        # Pitfall #3: film scans have blank DateTimeOriginal — return None.
         return None
 
     dt_naive = datetime.strptime(raw_dt.strip(), EXIF_DATETIME_FORMAT)
-
-    # Pitfall #1/#5 (RESEARCH.md): OffsetTimeOriginal cannot be trusted on these cameras.
-    # Cameras report +00:00 or +03:00 but store local Israel time. Treat all offsets as local.
-    dt_aware = dt_naive.replace(tzinfo=ISRAEL_TZ)
-    return dt_aware.astimezone(ISRAEL_TZ)
+    camera_tz = timezone(timedelta(hours=camera_utc_offset_hours))
+    return dt_naive.replace(tzinfo=camera_tz)
 
 
 def assign_photographer_label(source_path: str | Path, local_sources: list[dict]) -> str:
@@ -132,6 +134,7 @@ def main() -> None:
         label: str = entry["label"]
         output_dir_rel: str = entry["output_dir"]
         has_exif: bool = entry.get("has_exif", False)
+        camera_utc_offset_hours: int = entry.get("camera_utc_offset_hours", 2)
 
         source_dir = _resolve_output_dir(output_dir_rel)
 
@@ -146,7 +149,7 @@ def main() -> None:
             # Pitfall #4 (RESEARCH.md): use label prefix to avoid ID collisions
             # across photographers who may share filenames like IMG_0001.
             photo_id = f"{label}_{img_path.stem}"
-            ts = extract_timestamp(img_path) if has_exif else None
+            ts = extract_timestamp(img_path, camera_utc_offset_hours) if has_exif else None
 
             catalog_entry = {
                 "id": photo_id,

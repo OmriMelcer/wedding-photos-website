@@ -15,18 +15,21 @@ sources:
     - label: abir_sultan
       output_dir: sources/abir_sultan
       has_exif: true
+      camera_utc_offset_hours: 2    # camera set to IST (GMT+2) — not adjusted for DST
 
     - label: abir_sultan
       output_dir: sources/abir_sultan_film
-      has_exif: false        # film scans — blank DateTimeOriginal; routed to CLIP KNN in Phase 2
+      has_exif: false               # film scans — no EXIF timestamps; routed to CLIP KNN
 
     - label: inbal_zeldin
       output_dir: sources/inbal_zeldin
       has_exif: true
+      camera_utc_offset_hours: 3    # camera correctly set to IDT (GMT+3)
 
     - label: magnate_images
       output_dir: sources/magnate_images
       has_exif: true
+      camera_utc_offset_hours: 3    # OffsetTimeOriginal tag says +00:00 but actual IDT (GMT+3)
 
   pic_time:
     gallery_url: "https://justsmile.pic-time.com/gallery"
@@ -43,7 +46,8 @@ photographers:
     display_name: "Magnate Images"
 
 pipeline:
-  confidence_threshold: 0.7  # minimum cluster_confidence for Phase 2 cluster review
+  confidence_threshold: 0.7       # minimum cluster_confidence for Phase 2 cluster review
+  event_timezone_offset_hours: 2  # time windows defined in GMT+2 (abir_sultan clock reference)
   events:
     time_windows:
       prep:
