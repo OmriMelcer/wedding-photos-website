@@ -1,0 +1,10 @@
+[project]
+name = "wedding-photos-website"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "gallery-dl>=1.32.1",
+    "pyyaml>=6.0.3",
+]
