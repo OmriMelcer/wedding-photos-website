@@ -1,0 +1,44 @@
+# pipeline/config.yaml
+#
+# BEFORE RUNNING acquire_google.py:
+#   1. Replace every album_url value that contains "PLACEHOLDER" with the real
+#      Google Photos shared album link for that photographer.
+#      Example: https://photos.google.com/share/...
+#
+# BEFORE PHASE 3 UPLOAD:
+#   2. Update each display_name under `photographers:` from the placeholder
+#      value (e.g., "Photographer A") to the real photographer's name.
+#
+# Do NOT commit real album URLs or credentials to this file.
+# Keep R2 credentials in environment variables (see upload.py).
+
+sources:
+  google_photos:
+    - label: photographer_a
+      album_url: "PLACEHOLDER — replace with real shared album URL for photographer_a"
+      output_dir: sources/photographer_a
+
+    - label: photographer_b
+      album_url: "PLACEHOLDER — replace with real shared album URL for photographer_b"
+      output_dir: sources/photographer_b
+
+    - label: photographer_c
+      album_url: "PLACEHOLDER — replace with real shared album URL for photographer_c"
+      output_dir: sources/photographer_c
+
+  pic_time:
+    gallery_url: "https://justsmile.pic-time.com/gallery"
+    output_dir: sources/pic_time
+
+photographers:
+  - label: photographer_a
+    display_name: "Photographer A"  # TODO: replace with real name before launch
+
+  - label: photographer_b
+    display_name: "Photographer B"  # TODO: replace with real name before launch
+
+  - label: photographer_c
+    display_name: "Photographer C"  # TODO: replace with real name before launch
+
+pipeline:
+  confidence_threshold: 0.7  # minimum cluster_confidence; used in Phase 2 cluster review
