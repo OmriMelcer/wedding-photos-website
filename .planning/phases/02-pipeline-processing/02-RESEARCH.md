@@ -496,22 +496,16 @@ abir_sultan_000015980117 | prep | 0.61 | sources/abir_sultan_film/000015980117.j
 | A4 | photo ID prefix format `{label}_{stem}` avoids collisions | Code Examples (catalog.json) | Relies on filenames being unique within each source folder. If duplicates exist within a folder, they would still collide. |
 | A5 | `pipeline/output/` is the correct staging directory for intermediate files | Architecture Patterns | No specification in config.yaml or spec for this path. Reasonable convention; easy to change. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Timezone ambiguity in inbal_zeldin and magnate_images**
+1. **Timezone ambiguity in inbal_zeldin and magnate_images** — RESOLVED: Treat all offsets (`+00:00`, `+03:00`) as misconfigured cameras storing local Israel time. Do not apply the offset mathematically. Interpret `DateTimeOriginal` as local Israel time (+02:00) regardless of `OffsetTimeOriginal`. Manual spot-check recommended after ingest before cluster.py run (see VALIDATION.md manual verifications). Plan 02-02 Task 1 implements this mitigation.
    - What we know: `OffsetTimeOriginal` varies from `+00:00` to `+03:00` across bodies; timestamps appear to be local Israel time in all cases based on timestamp values (16:50 for photoshooting, 18:57 for hupa etc.)
-   - What's unclear: Whether any body actually stored UTC and the offset is correct
-   - Recommendation: Before running cluster.py, do a manual spot-check: identify one inbal_zeldin photo from the hupa ceremony (visually obvious — outdoor ceremony under a chuppah), confirm its `DateTimeOriginal` is between 18:00 and 18:40 as a local-time read. If it reads 16:00-16:40 instead, the timestamps ARE UTC and normalization must add 2 hours before comparison.
 
-2. **pic_time photos not yet downloaded**
+2. **pic_time photos not yet downloaded** — RESOLVED: ingest.py gracefully skips missing source directories with a stderr warning and continues. If pic_time photos arrive later, re-run the full pipeline. Plan 02-02 Task 1 implements this behavior (missing source dirs are warned and skipped, not fatal).
    - What we know: `sources/pic_time/` folder does not exist or is empty; Phase 1 UAT marked pic_time download as "blocked"
-   - What's unclear: Whether pic_time photos will arrive before Phase 2 runs; they may have EXIF or not
-   - Recommendation: Design ingest.py to gracefully skip missing source directories (print a warning, continue). If pic_time photos arrive later, re-run the full pipeline.
 
-3. **Cluster coverage for PREP phase**
+3. **Cluster coverage for PREP phase** — RESOLVED: `compute_centroids()` in cluster.py skips clusters with zero EXIF-anchored photos and emits a stderr warning. Film photos cannot be KNN-assigned to a cluster with no centroid; they are assigned to the nearest available centroid instead and flagged in the summary. Plan 02-04 Task 1 implements this graceful handling.
    - What we know: The wedding date based on EXIF is 2026-05-01; `prep` window is 08:00-14:00; photographers likely arrived mid-afternoon (first digital timestamp seen is 17:18)
-   - What's unclear: How many EXIF photos actually fall in the `prep` window; if zero, the prep centroid cannot be computed and film photos cannot be assigned to prep
-   - Recommendation: After ingest, log the count of EXIF photos per cluster before computing centroids. If any cluster has zero EXIF photos, warn and skip KNN assignment for that cluster (assign remaining film photos manually or by visual inspection).
 
 ## Environment Availability
 

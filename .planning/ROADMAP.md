@@ -58,7 +58,28 @@ Plans:
   4. Photos below the confidence threshold are flagged in a review list before upload proceeds
   5. Web-quality resized images and per-photo thumbnails exist on disk for all photos
 
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+**Wave 1** *(test infrastructure + config + deps)*
+
+- [ ] 02-01-PLAN.md — Wave 0 foundation: install open-clip-torch/scikit-learn/pytest, scaffold pipeline/tests/, add events.time_windows to config.yaml, write RED test stubs for every PIPE-0X requirement
+
+**Wave 2** *(blocked on Wave 1 — needs tests + config)*
+
+- [ ] 02-02-PLAN.md — pipeline/ingest.py: EXIF + photographer tagging → pipeline/output/catalog.json (PIPE-01, PIPE-02)
+
+**Wave 3** *(blocked on Wave 2 — needs catalog.json)*
+
+- [ ] 02-03-PLAN.md — pipeline/embed.py: CLIP ViT-B/32 embeddings for all photos → pipeline/output/embeddings.npy (PIPE-03)
+
+**Wave 4** *(blocked on Wave 3 — needs catalog + embeddings)*
+
+- [ ] 02-04-PLAN.md — pipeline/cluster.py: time-window + KNN assignment + confidence + low-conf review → metadata.json + low_confidence.txt (PIPE-04, PIPE-05, PIPE-06)
+
+**Wave 5** *(blocked on Wave 4 — needs metadata.json)*
+
+- [ ] 02-05-PLAN.md — pipeline/resize.py: web (≤2000px) + thumbnail (≤400px) JPEGs with EXIF orientation correction (PIPE-07)
 
 ### Phase 3: Pipeline Upload
 
@@ -111,7 +132,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
-| 2. Pipeline Processing | 0/TBD | Not started | - |
+| 2. Pipeline Processing | 0/5 | Not started | - |
 | 3. Pipeline Upload | 0/TBD | Not started | - |
 | 4. React Site | 0/TBD | Not started | - |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
