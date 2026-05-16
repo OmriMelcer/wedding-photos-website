@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Photo Acquisition** - Automated download of all photo sources to local folders with manual fallback (completed 2026-05-16)
 - [x] **Phase 2: Pipeline Processing** - EXIF extraction, photographer tagging, CLIP embeddings, event cluster assignment, confidence scoring, and resize (completed 2026-05-16)
-- [ ] **Phase 3: Pipeline Upload** - Compressed images and metadata.json pushed to Cloudflare R2 via config-driven upload script
+- [x] **Phase 3: Pipeline Upload** - Compressed images and metadata.json pushed to Cloudflare R2 via config-driven upload script (completed 2026-05-16)
 - [ ] **Phase 4: React Site** - Masonry gallery, lightbox, photographer/phase filters, Hebrew RTL UI, and face-filter gating
 - [ ] **Phase 5: Infrastructure & Deployment** - R2 bucket public access, Cloudflare Pages deploy, end-to-end live site
 
@@ -97,11 +97,11 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 03-01-PLAN.md — Add r2: block to config.yaml (bucket, endpoint, r2_public_url) and add boto3 to pyproject.toml (UPLD-03)
+- [x] 03-01-PLAN.md — Add r2: block to config.yaml (bucket, endpoint, r2_public_url) and add boto3 to pyproject.toml (UPLD-03)
 
 **Wave 2** *(blocked on Wave 1 — needs r2: config block and boto3)*
 
-- [ ] 03-02-PLAN.md — pipeline/upload.py: concurrent upload of photos/thumbs to R2, URL writeback into metadata.json, metadata.json upload (UPLD-01, UPLD-02)
+- [x] 03-02-PLAN.md — pipeline/upload.py: concurrent upload of photos/thumbs to R2, URL writeback into metadata.json, metadata.json upload (UPLD-01, UPLD-02)
 
 ### Phase 4: React Site
 
@@ -142,6 +142,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
-| 3. Pipeline Upload | 0/2 | Not started | - |
+| 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
 | 4. React Site | 0/TBD | Not started | - |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
