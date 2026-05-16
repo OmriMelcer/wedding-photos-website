@@ -607,17 +607,19 @@ export const METADATA_URL = import.meta.env.VITE_METADATA_URL || '/metadata.json
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **metadata.json local dev fixture format**
    - What we know: `site/public/metadata.json` is the local dev fixture path; `METADATA_URL` defaults to `/metadata.json`.
    - What's unclear: Whether a synthetic fixture is sufficient or whether the real pipeline output (from Phase 3) should be used. Phase 3 upload is not yet complete.
    - Recommendation: Create a minimal synthetic `metadata.json` with 10-15 photos covering all 5 phases and all 3 photographers. This is enough to develop and test all filter/layout logic.
+   - **RESOLVED:** Synthetic fixture used (15 photos in site/public/metadata.json, Plan 01 Task 2).
 
 2. **`react-masonry-css` last updated 2022**
    - What we know: Version 1.0.16 was published 2022-05-14 — no updates in 3 years. GitHub repo exists and has 1K+ stars.
    - What's unclear: Whether it has any known incompatibilities with React 19.
    - Recommendation: The library is CSS-only with a thin React wrapper — it is unlikely to have React 19 issues. If an issue is found during implementation, fallback to CSS `columns` property with manual breakpoint media queries.
+   - **RESOLVED:** CSS-only library; no React 19 incompatibility found; fallback documented in action if issue surfaces.
 
 ---
 
