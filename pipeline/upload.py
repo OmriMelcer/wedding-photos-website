@@ -71,13 +71,21 @@ def _make_s3_client(config: dict):
         )
         sys.exit(1)
 
-    return boto3.client(
-        "s3",
-        endpoint_url=config["r2"]["endpoint"],
-        aws_access_key_id=access_key,
-        aws_secret_access_key=secret_key,
-        region_name="auto",
-    )
+    try:
+        return boto3.client(
+            "s3",
+            endpoint_url=config["r2"]["endpoint"],
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            region_name="auto",
+        )
+    except ValueError as exc:
+        print(
+            f"Error: could not create R2 client — {exc}\n"
+            "Check that pipeline/config.yaml r2.endpoint is set to your real account URL.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
 
 def _upload_file(s3, bucket: str, local_path: Path, key: str) -> None:
