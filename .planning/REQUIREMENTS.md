@@ -79,39 +79,39 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ACQN-01 | — | Pending |
-| ACQN-02 | — | Pending |
-| ACQN-03 | — | Pending |
-| PIPE-01 | — | Pending |
-| PIPE-02 | — | Pending |
-| PIPE-03 | — | Pending |
-| PIPE-04 | — | Pending |
-| PIPE-05 | — | Pending |
-| PIPE-06 | — | Pending |
-| PIPE-07 | — | Pending |
-| UPLD-01 | — | Pending |
-| UPLD-02 | — | Pending |
-| UPLD-03 | — | Pending |
-| GALL-01 | — | Pending |
-| GALL-02 | — | Pending |
-| GALL-03 | — | Pending |
-| GALL-04 | — | Pending |
-| FILT-01 | — | Pending |
-| FILT-02 | — | Pending |
-| FILT-03 | — | Pending |
-| FILT-04 | — | Pending |
-| DSGN-01 | — | Pending |
-| I18N-01 | — | Pending |
-| I18N-02 | — | Pending |
-| I18N-03 | — | Pending |
-| INFRA-01 | — | Pending |
-| INFRA-02 | — | Pending |
+| ACQN-01 | Phase 1 | Pending |
+| ACQN-02 | Phase 1 | Pending |
+| ACQN-03 | Phase 1 | Pending |
+| PIPE-01 | Phase 2 | Pending |
+| PIPE-02 | Phase 2 | Pending |
+| PIPE-03 | Phase 2 | Pending |
+| PIPE-04 | Phase 2 | Pending |
+| PIPE-05 | Phase 2 | Pending |
+| PIPE-06 | Phase 2 | Pending |
+| PIPE-07 | Phase 2 | Pending |
+| UPLD-01 | Phase 3 | Pending |
+| UPLD-02 | Phase 3 | Pending |
+| UPLD-03 | Phase 3 | Pending |
+| GALL-01 | Phase 4 | Pending |
+| GALL-02 | Phase 4 | Pending |
+| GALL-03 | Phase 4 | Pending |
+| GALL-04 | Phase 4 | Pending |
+| FILT-01 | Phase 4 | Pending |
+| FILT-02 | Phase 4 | Pending |
+| FILT-03 | Phase 4 | Pending |
+| FILT-04 | Phase 4 | Pending |
+| DSGN-01 | Phase 4 | Pending |
+| I18N-01 | Phase 4 | Pending |
+| I18N-02 | Phase 4 | Pending |
+| I18N-03 | Phase 4 | Pending |
+| INFRA-01 | Phase 5 | Pending |
+| INFRA-02 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 27 total
-- Mapped to phases: 0 (populated during roadmap creation)
-- Unmapped: 27
+- Mapped to phases: 27
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-05-16*
-*Last updated: 2026-05-16 after initial definition*
+*Last updated: 2026-05-16 after roadmap creation*
