@@ -122,7 +122,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 04-01-PLAN.md — Scaffold site/ (Vite + React 19 + Tailwind v4 + shadcn + Heebo + Vitest), RTL HTML shell, config.js canonical map, synthetic metadata.json fixture, Wave-0 tests
+- [x] 04-01-PLAN.md — Scaffold site/ (Vite + React 19 + Tailwind v4 + shadcn + Heebo + Vitest), RTL HTML shell, config.js canonical map, synthetic metadata.json fixture, Wave-0 tests
 
 **Wave 2** *(blocked on Wave 1 — needs scaffold + config.js + fixture)*
 
@@ -159,5 +159,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
-| 4. React Site | 0/4 | Not started | - |
+| 4. React Site | 1/4 | In Progress|  |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |

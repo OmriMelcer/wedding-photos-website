@@ -43,13 +43,13 @@
 
 ### Site — Design
 
-- [ ] **DSGN-01**: Gallery design is beautiful, subtle, and interactive; third-party UI libraries and component packages may be used as needed
+- [x] **DSGN-01**: Gallery design is beautiful, subtle, and interactive; third-party UI libraries and component packages may be used as needed
 
 ### Site — Localization
 
 - [ ] **I18N-01**: All displayed UI text is in Hebrew
-- [ ] **I18N-02**: Page layout uses RTL (right-to-left) direction
-- [ ] **I18N-03**: Event phase cluster keys (prep, photoshooting, dining, hupa, dancing) mapped to Hebrew display strings; English-key → Hebrew-string mapping is a config entry so titles can be updated without code changes
+- [x] **I18N-02**: Page layout uses RTL (right-to-left) direction
+- [x] **I18N-03**: Event phase cluster keys (prep, photoshooting, dining, hupa, dancing) mapped to Hebrew display strings; English-key → Hebrew-string mapping is a config entry so titles can be updated without code changes
 
 ### Infrastructure
 
@@ -100,10 +100,10 @@
 | FILT-02 | Phase 4 | Pending |
 | FILT-03 | Phase 4 | Pending |
 | FILT-04 | Phase 4 | Pending |
-| DSGN-01 | Phase 4 | Pending |
+| DSGN-01 | Phase 4 | Complete |
 | I18N-01 | Phase 4 | Pending |
-| I18N-02 | Phase 4 | Pending |
-| I18N-03 | Phase 4 | Pending |
+| I18N-02 | Phase 4 | Complete |
+| I18N-03 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Pending |
 | INFRA-02 | Phase 5 | Pending |
 
