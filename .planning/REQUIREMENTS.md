@@ -13,8 +13,8 @@
 
 ### Pipeline — Processing
 
-- [ ] **PIPE-01**: EXIF timestamps extracted from digital photos and normalized to GMT+02:00 (Israel Standard Time)
-- [ ] **PIPE-02**: Photographer tag assigned per source folder, mapped to Photographer A, B, or C via config.yaml
+- [x] **PIPE-01**: EXIF timestamps extracted from digital photos and normalized to GMT+02:00 (Israel Standard Time)
+- [x] **PIPE-02**: Photographer tag assigned per source folder, mapped to Photographer A, B, or C via config.yaml
 - [ ] **PIPE-03**: CLIP ViT-B/32 embeddings computed for ALL photos (both digital and film); images are blurred and downscaled before inference to maximise speed — this pre-processing is for clustering only, not applied to website images
 - [ ] **PIPE-04**: Digital photos assigned to event cluster via EXIF timestamp against config.yaml time windows (all times GMT+02:00): prep 08:00–14:00, photoshooting 14:00–16:10, dining 16:10–18:00, hupa 18:00–18:40, dancing 18:40–end
 - [ ] **PIPE-05**: Per-cluster centroids computed from the CLIP embeddings of EXIF-labeled digital photos; film photos (no EXIF) assigned to nearest centroid via KNN in the same embedding space
@@ -82,8 +82,8 @@
 | ACQN-01 | Phase 1 | Pending |
 | ACQN-02 | Phase 1 | Pending |
 | ACQN-03 | Phase 1 | Pending |
-| PIPE-01 | Phase 2 | Pending |
-| PIPE-02 | Phase 2 | Pending |
+| PIPE-01 | Phase 2 | Complete |
+| PIPE-02 | Phase 2 | Complete |
 | PIPE-03 | Phase 2 | Pending |
 | PIPE-04 | Phase 2 | Pending |
 | PIPE-05 | Phase 2 | Pending |

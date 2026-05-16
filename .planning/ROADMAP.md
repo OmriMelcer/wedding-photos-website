@@ -67,7 +67,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 — needs tests + config)*
 
-- [ ] 02-02-PLAN.md — pipeline/ingest.py: EXIF + photographer tagging → pipeline/output/catalog.json (PIPE-01, PIPE-02)
+- [x] 02-02-PLAN.md — pipeline/ingest.py: EXIF + photographer tagging → pipeline/output/catalog.json (PIPE-01, PIPE-02)
 
 **Wave 3** *(blocked on Wave 2 — needs catalog.json)*
 
@@ -132,7 +132,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
-| 2. Pipeline Processing | 1/5 | In Progress|  |
+| 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 0/TBD | Not started | - |
 | 4. React Site | 0/TBD | Not started | - |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
