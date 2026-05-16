@@ -1,44 +1,46 @@
 # pipeline/config.yaml
 #
-# BEFORE RUNNING acquire_google.py:
-#   1. Replace every album_url value that contains "PLACEHOLDER" with the real
-#      Google Photos shared album link for that photographer.
-#      Example: https://photos.google.com/share/...
+# Source folders are populated — ZIPs were downloaded manually and extracted.
+# Run Phase 2 pipeline scripts once this file is fully configured.
 #
 # BEFORE PHASE 3 UPLOAD:
-#   2. Update each display_name under `photographers:` from the placeholder
-#      value (e.g., "Photographer A") to the real photographer's name.
-#
-# Do NOT commit real album URLs or credentials to this file.
-# Keep R2 credentials in environment variables (see upload.py).
+#   Update R2 credentials in environment variables (see upload.py).
+#   Event time windows go in the pipeline.events section (added in Phase 2).
 
 sources:
-  google_photos:
-    - label: photographer_a
-      album_url: "PLACEHOLDER — replace with real shared album URL for photographer_a"
-      output_dir: sources/photographer_a
+  # Four source folders: 3 photographers, Abir Sultan split into digital + film.
+  # abir_sultan and abir_sultan_film share the same photographer label so they
+  # appear as one photographer in the gallery filter.
+  local_sources:
+    - label: abir_sultan
+      output_dir: sources/abir_sultan
+      has_exif: true
 
-    - label: photographer_b
-      album_url: "PLACEHOLDER — replace with real shared album URL for photographer_b"
-      output_dir: sources/photographer_b
+    - label: abir_sultan
+      output_dir: sources/abir_sultan_film
+      has_exif: false        # film scans — blank DateTimeOriginal; routed to CLIP KNN in Phase 2
 
-    - label: photographer_c
-      album_url: "PLACEHOLDER — replace with real shared album URL for photographer_c"
-      output_dir: sources/photographer_c
+    - label: inbal_zeldin
+      output_dir: sources/inbal_zeldin
+      has_exif: true
+
+    - label: magnate_images
+      output_dir: sources/magnate_images
+      has_exif: true
 
   pic_time:
     gallery_url: "https://justsmile.pic-time.com/gallery"
     output_dir: sources/pic_time
 
 photographers:
-  - label: photographer_a
-    display_name: "Photographer A"  # TODO: replace with real name before launch
+  - label: abir_sultan
+    display_name: "עביר סולטן"
 
-  - label: photographer_b
-    display_name: "Photographer B"  # TODO: replace with real name before launch
+  - label: inbal_zeldin
+    display_name: "ענבל זלדין"
 
-  - label: photographer_c
-    display_name: "Photographer C"  # TODO: replace with real name before launch
+  - label: magnate_images
+    display_name: "Magnate Images"
 
 pipeline:
-  confidence_threshold: 0.7  # minimum cluster_confidence; used in Phase 2 cluster review
+  confidence_threshold: 0.7  # minimum cluster_confidence for Phase 2 cluster review
