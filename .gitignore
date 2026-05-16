@@ -4,4 +4,5 @@
 *.jpeg
 *.zip
 pipeline/output/
+pipeline/review/
 __pycache__/
