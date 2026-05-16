@@ -22,15 +22,13 @@ Not selected for discussion — deferred to Claude's discretion.
 
 **Context presented:** Three options — custom domain, Cloudflare's auto-assigned r2.dev URL, or defer to config. Noted that Cloudflare Registrar registration is ~$10/year and ~5 minutes setup since already in the Cloudflare ecosystem.
 
-**User explored:** Asked whether getting `noa-omri-wedding-photos.com` was feasible and cost-effective.
+**User explored:** Asked whether getting `noa-omri-wedding-photos.com` was feasible and cost-effective. Asked if a domain can be bought permanently.
 
-**Claude answered:** Cloudflare Registrar ~$10/year for `.com`, 5-minute setup (register → R2 bucket settings → connect custom domain). Recommended it given Cloudflare ecosystem fit and readable guest-facing URLs.
+**Claude answered:** Domains can't be bought permanently (ICANN rules, always leased). Noted that guests never see R2 URLs — only the Cloudflare Pages URL (free forever via `*.pages.dev`). Recommended skipping the custom domain entirely: use `*.pages.dev` for the site and `pub-xxx.r2.dev` for R2 assets, both free.
 
-**Follow-up question:** Which URL approach to lock in?
+**User decision:** No custom domain. Use free `r2.dev` URL for R2 assets.
 
-**User selected:** Custom domain — register via Cloudflare Registrar.
-
-**Decision locked:** Base URL from `config.yaml` as `r2_public_url`. URL pattern: `{r2_public_url}/photos/{id}.jpg` and `{r2_public_url}/thumbs/{id}.jpg`.
+**Decision locked:** Base URL from `config.yaml` as `r2_public_url` (filled with `pub-xxx.r2.dev` value after bucket creation). URL pattern: `{r2_public_url}/photos/{id}.jpg` and `{r2_public_url}/thumbs/{id}.jpg`.
 
 ---
 

@@ -16,8 +16,8 @@ The input artifacts from Phase 2 are ready: 1309 web-quality photos in `pipeline
 ## Implementation Decisions
 
 ### Public URL format
-- **D-01:** Use a custom domain for public R2 URLs (e.g. `noa-omri-wedding-photos.com`) — register via Cloudflare Registrar before upload.
-- **D-02:** Base URL read from `config.yaml` as `r2_public_url`. URL pattern: `{r2_public_url}/photos/{id}.jpg` for photos, `{r2_public_url}/thumbs/{id}.jpg` for thumbnails.
+- **D-01:** Use Cloudflare's free auto-assigned `r2.dev` public URL — no custom domain. Guests never see R2 URLs directly (they're loaded by JS from metadata.json), so the URL doesn't need to be human-readable.
+- **D-02:** Base URL read from `config.yaml` as `r2_public_url`. URL pattern: `{r2_public_url}/photos/{id}.jpg` for photos, `{r2_public_url}/thumbs/{id}.jpg` for thumbnails. The `pub-xxx.r2.dev` value is filled in after bucket creation.
 - **D-03:** After uploading all files, write constructed URLs back into `pipeline/output/metadata.json` (updating the `r2_url` and `thumb_url` fields), then upload the updated metadata.json to R2.
 
 ### Upload behavior
@@ -45,7 +45,7 @@ The input artifacts from Phase 2 are ready: 1309 web-quality photos in `pipeline
 ### Existing pipeline patterns
 - `pipeline/cluster.py` — Reference for config loading pattern (`pyyaml`, `_CONFIG_PATH`, `_SCRIPT_DIR`), path conventions, and script structure
 - `pipeline/resize.py` — Reference for metadata.json read pattern and output directory conventions
-- `pipeline/config.yaml` — Current config file; needs a new `r2:` section for bucket name, endpoint URL, and `r2_public_url`
+- `pipeline/config.yaml` — Current config file; needs a new `r2:` section for bucket name, endpoint URL, and `r2_public_url` (the `pub-xxx.r2.dev` URL assigned by Cloudflare)
 
 ### Metadata
 - `pipeline/output/metadata.json` — The file to be finalized and uploaded; currently has `r2_url: ''` and `thumb_url: ''` for all 1309 photos; includes `sort_key` field to preserve
@@ -76,7 +76,7 @@ The input artifacts from Phase 2 are ready: 1309 web-quality photos in `pipeline
 <specifics>
 ## Specific Ideas
 
-- Custom domain to register: `noa-omri-wedding-photos.com` (or similar) via Cloudflare Registrar, then connect to R2 bucket in Cloudflare dashboard.
+- No custom domain — use Cloudflare's free `pub-xxx.r2.dev` URL. Guests visit the Cloudflare Pages URL (`*.pages.dev`), which is also free; R2 URLs are internal to metadata.json and never typed by anyone.
 - Credentials via env vars: `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY` — consistent with the existing config.yaml comment: "Update R2 credentials in environment variables (see upload.py)".
 
 </specifics>
