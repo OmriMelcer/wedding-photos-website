@@ -92,7 +92,16 @@ Plans:
   2. metadata.json is generated with correct schema (id, filename, r2_url, thumb_url, photographer, timestamp, cluster, cluster_confidence, faces, people) and uploaded to R2
   3. All R2 credentials, event time windows, photographer names, and confidence threshold are read from pipeline/config.yaml — no hard-coded values in upload scripts
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — Add r2: block to config.yaml (bucket, endpoint, r2_public_url) and add boto3 to pyproject.toml (UPLD-03)
+
+**Wave 2** *(blocked on Wave 1 — needs r2: config block and boto3)*
+
+- [ ] 03-02-PLAN.md — pipeline/upload.py: concurrent upload of photos/thumbs to R2, URL writeback into metadata.json, metadata.json upload (UPLD-01, UPLD-02)
 
 ### Phase 4: React Site
 
@@ -133,6 +142,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
-| 3. Pipeline Upload | 0/TBD | Not started | - |
+| 3. Pipeline Upload | 0/2 | Not started | - |
 | 4. React Site | 0/TBD | Not started | - |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
