@@ -126,7 +126,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 — needs scaffold + config.js + fixture)*
 
-- [ ] 04-02-PLAN.md — usePhotos (fetch-once) + useFilters (AND-across/OR-within, sort_key order, clearAll) hooks + tests covering GALL-01, FILT-01, FILT-02, FILT-03
+- [x] 04-02-PLAN.md — usePhotos (fetch-once) + useFilters (AND-across/OR-within, sort_key order, clearAll) hooks + tests covering GALL-01, FILT-01, FILT-02, FILT-03
 
 **Wave 3** *(blocked on Wave 2 — needs hooks)*
 
@@ -159,5 +159,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
-| 4. React Site | 1/4 | In Progress|  |
+| 4. React Site | 2/4 | In Progress|  |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
