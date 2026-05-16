@@ -29,7 +29,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Running the acquisition script downloads all photos from the pic-time gallery into a source folder
   3. A documented manual download path exists and works when auto-download fails for either source
   4. Source folders are organized so the pipeline can identify which photos belong to which photographer
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Config skeleton + Google Photos downloader (pipeline/config.yaml, pipeline/acquire_google.py)
+- [ ] 01-02-PLAN.md — pic-time gallery downloader (pipeline/acquire_pictime.py)
+- [ ] 01-03-PLAN.md — Manual download fallback documentation (docs/manual-download.md)
 
 ### Phase 2: Pipeline Processing
 **Goal**: Every photo has a cluster assignment, confidence score, resized web image, and thumbnail — ready to upload
@@ -84,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Photo Acquisition | 0/TBD | Not started | - |
+| 1. Photo Acquisition | 0/3 | Not started | - |
 | 2. Pipeline Processing | 0/TBD | Not started | - |
 | 3. Pipeline Upload | 0/TBD | Not started | - |
 | 4. React Site | 0/TBD | Not started | - |
