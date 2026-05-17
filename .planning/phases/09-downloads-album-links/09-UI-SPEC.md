@@ -1,7 +1,8 @@
 ---
 phase: 9
 slug: downloads-album-links
-status: draft
+status: approved
+reviewed_at: 2026-05-18
 shadcn_initialized: true
 preset: radix-nova
 created: 2026-05-18
