@@ -61,7 +61,9 @@ Plans:
   2. Fetching a live R2 photo URL (e.g. via `curl -I`) returns the response header `Cache-Control: public, max-age=31536000, immutable`
   3. Fetching the live `metadata.json` URL returns the response header `Cache-Control: public, max-age=86400`
   4. Inspecting any downloaded R2 photo with `exiftool` shows no GPS, no device ID, and no timestamp fields — confirming EXIF was stripped before upload
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 08-01-PLAN.md — Regenerate output via resize.py, re-upload via upload.py, verify live R2 Cache-Control headers + EXIF stripping (SEC-04)
 
 ## Progress
 
