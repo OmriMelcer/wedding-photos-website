@@ -52,3 +52,50 @@ def test_exif_orientation_corrected(tmp_path: Path) -> None:
         # After correction, orientation tag should be 1 (normal) or absent
         orientation = out_exif.get(274, 1)
         assert orientation == 1
+
+
+def test_exif_stripped_web(tmp_path: Path) -> None:
+    src = tmp_path / "exif_src.jpg"
+    img = Image.new("RGB", (200, 100))
+    e = img.getexif()
+    e[271] = "Canon"                   # Make
+    e[306] = "2025:06:14 17:32:00"    # DateTime
+    img.save(src, format="JPEG", exif=e.tobytes())
+
+    web_out = tmp_path / "web.jpg"
+    thumb_out = tmp_path / "thumb.jpg"
+    resize_photo(src, web_out, thumb_out)
+
+    with Image.open(web_out) as result:
+        assert dict(result.getexif()) == {}
+
+
+def test_exif_stripped_thumb(tmp_path: Path) -> None:
+    src = tmp_path / "exif_src2.jpg"
+    img = Image.new("RGB", (200, 100))
+    e = img.getexif()
+    e[271] = "Canon"
+    e[306] = "2025:06:14 17:32:00"
+    img.save(src, format="JPEG", exif=e.tobytes())
+
+    web_out = tmp_path / "web2.jpg"
+    thumb_out = tmp_path / "thumb2.jpg"
+    resize_photo(src, web_out, thumb_out)
+
+    with Image.open(thumb_out) as result:
+        assert dict(result.getexif()) == {}
+
+
+def test_sources_untouched(tmp_path: Path) -> None:
+    src = tmp_path / "src_immutable.jpg"
+    img = Image.new("RGB", (200, 100))
+    e = img.getexif()
+    e[271] = "Canon"
+    img.save(src, format="JPEG", exif=e.tobytes())
+    original_bytes = src.read_bytes()
+
+    web_out = tmp_path / "web3.jpg"
+    thumb_out = tmp_path / "thumb3.jpg"
+    resize_photo(src, web_out, thumb_out)
+
+    assert src.read_bytes() == original_bytes
