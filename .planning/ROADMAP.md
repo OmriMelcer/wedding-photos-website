@@ -4,6 +4,7 @@
 
 - ✅ **v1.0 MVP** — Phases 1–5 (shipped 2026-05-17)
 - ✅ **v1.1 Security & Hardening** — Phases 6–8 (shipped 2026-05-18)
+- **v1.2 Downloads & Album Links** — Phase 9 (current)
 
 ## Phases
 
@@ -31,6 +32,25 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 
 </details>
 
+### v1.2 Downloads & Album Links
+
+- [ ] **Phase 9: Downloads & Album Links** - Guests can download photos and jump to source albums from the gallery
+
+## Phase Details
+
+### Phase 9: Downloads & Album Links
+**Goal**: Guests can download individual photos directly from the gallery and access the original source albums in one click
+**Depends on**: Phase 8 (live site with photos on R2)
+**Requirements**: DWNL-01, DWNL-02, LINK-01, LINK-02, CONF-01
+**Success Criteria** (what must be TRUE):
+  1. Guest clicks a download button in the lightbox and receives the currently viewed photo as a file download
+  2. Guest hovers over a gallery card and sees a download icon; clicking it downloads that photo
+  3. Top bar displays 4 album link buttons (3 Google Photos + 1 pic-time) on the left side
+  4. Clicking any album link opens the source album in a new browser tab
+  5. Album URLs can be updated by editing `site/src/config.js` without touching any component file
+**Plans**: TBD
+**UI hint**: yes
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -43,3 +63,4 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 | 6. Pipeline Code Changes | v1.1 | 2/2 | Complete | 2026-05-17 |
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
+| 9. Downloads & Album Links | v1.2 | 0/? | Not started | - |
