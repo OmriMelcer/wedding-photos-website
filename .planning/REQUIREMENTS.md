@@ -62,10 +62,10 @@ Security hardening before sharing the URL with guests. Phases 6–8.
 
 ### Pipeline Security
 
-- [ ] **SEC-01**: `pipeline/resize.py` strips all EXIF data (GPS coordinates, device identifiers, timestamps) from every web-quality output image before upload — original files in `sources/` are never modified
-- [ ] **SEC-02**: `pipeline/upload.py` sets `Cache-Control: public, max-age=86400` on `metadata.json` upload so browsers and CDN edges cache it for 24 hours
-- [ ] **SEC-03**: `pipeline/upload.py` sets `Cache-Control: public, max-age=31536000, immutable` on all photo and thumbnail uploads so browsers cache images indefinitely
-- [ ] **SEC-04**: All 1327 photos and thumbnails on R2 are regenerated (resize only — no re-embed or re-cluster) with EXIF stripped and re-uploaded with correct cache headers; `metadata.json` cluster assignments are unchanged
+- [x] **SEC-01**: `pipeline/resize.py` strips all EXIF data (GPS coordinates, device identifiers, timestamps) from every web-quality output image before upload — original files in `sources/` are never modified
+- [x] **SEC-02**: `pipeline/upload.py` sets `Cache-Control: public, max-age=86400` on `metadata.json` upload so browsers and CDN edges cache it for 24 hours
+- [x] **SEC-03**: `pipeline/upload.py` sets `Cache-Control: public, max-age=31536000, immutable` on all photo and thumbnail uploads so browsers cache images indefinitely
+- [x] **SEC-04**: All 1309 photos and thumbnails on R2 regenerated (resize only — no re-embed or re-cluster) with EXIF stripped and re-uploaded with correct cache headers; `metadata.json` cluster assignments unchanged
 
 ### Cloudflare Hardening
 
@@ -128,17 +128,17 @@ Security hardening before sharing the URL with guests. Phases 6–8.
 | I18N-03 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Complete |
 | INFRA-02 | Phase 5 | Complete |
-| SEC-01 | Phase 6 | Pending |
-| SEC-02 | Phase 6 | Pending |
-| SEC-03 | Phase 6 | Pending |
-| CF-01 | Phase 7 | Pending |
-| CF-02 | Phase 7 | Pending |
+| SEC-01 | Phase 6 | Complete |
+| SEC-02 | Phase 6 | Complete |
+| SEC-03 | Phase 6 | Complete |
+| CF-01 | Phase 7 | Complete |
+| CF-02 | Phase 7 | Complete |
 | CF-03 | — | Descoped |
-| SEC-04 | Phase 8 | Pending |
+| SEC-04 | Phase 8 | Complete |
 
 **Coverage:**
-- v1 requirements: 27 total (all complete)
-- v1.1 requirements: 6 active (CF-03 descoped)
+- v1 requirements: 27 total (all complete — v1.0)
+- v1.1 requirements: 6 active (CF-03 descoped) — all complete
 - Mapped to phases: 33
 - Unmapped: 0 ✓
 

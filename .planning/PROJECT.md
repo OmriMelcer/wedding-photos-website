@@ -32,34 +32,28 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - ✓ Hebrew RTL layout; phase keys mapped to Hebrew labels in config — v1.0
 - ✓ R2 CORS configured (GET+HEAD, any origin, maxAge 3600) — v1.0
 - ✓ Site deployed to Cloudflare Workers Static Assets — v1.0
+- ✓ EXIF stripped from all resized output images via `exif=b""` in resize.py — v1.1
+- ✓ Cache-Control headers on all R2 objects: `max-age=86400` (metadata.json), `max-age=31536000, immutable` (photos/thumbs) — v1.1
+- ✓ Cloudflare billing alerts at $5/month for R2 operations and Workers requests — v1.1
+- ✓ All 1309 photos regenerated with EXIF stripped and re-uploaded with correct headers; live R2 verification passed — v1.1
 
-## Current Milestone: v1.1 Security & Hardening
+### Active (v2)
 
-**Goal:** Harden the live site against cost-incurring attacks and privacy leaks before sharing the URL with guests, then re-upload all photos with fixes applied.
-
-**Target features:**
-- `Cache-Control` headers on all R2 uploads (metadata.json + photos + thumbs)
-- EXIF strip in `pipeline/resize.py` — remove GPS and sensitive metadata before upload
-- WAF / rate limit on the Workers domain to throttle request floods
-- Cloudflare budget alert ($5/month notification)
-- Re-run resize + upload pipeline — regenerate and re-upload all 1327 photos
-
-### Active
-
-- [ ] Add `Cache-Control` headers to R2 uploads (`max-age=86400` for metadata.json; `immutable` for photos/thumbs)
-- [ ] Strip EXIF (GPS + all metadata) in `pipeline/resize.py` before saving
-- [ ] Configure WAF rate limit rule on Workers domain (60 req/min per IP)
-- [ ] Set Cloudflare budget alert at $5/month for R2 and Workers
-- [ ] Re-run resize + upload pipeline with EXIF-stripped photos and correct cache headers
+- [ ] Face recognition pipeline: detect faces, cluster into person identities (FACE-01)
+- [ ] User labels face clusters with names (FACE-02)
+- [ ] metadata.json updated with `faces[]` and `people[]` arrays — photo ID lists per person, no raw embeddings (FACE-03)
+- [ ] Site face filter becomes visible and functional when `people.length > 0` (FACE-04, zero code change on site side)
 
 ### Out of Scope
 
-- Face recognition (FACE-01..04) — v2 scope; schema is forward-compatible, `faces[]`/`people[]` are empty arrays in v1.0 metadata.json
 - Backend / server — static-only architecture; no runtime server ever
 - Incremental pipeline — one-shot by design; re-run full pipeline if source photos change
 - Mobile app — web-first; responsive site covers mobile browsers
 - OAuth / login — site is public; no authentication needed for guests
 - Real-time updates — no server; updates require re-running the pipeline
+- Per-IP WAF rate limiting — Workers.dev can't use free WAF rules; built-in DDoS sufficient for a 100-guest site (descoped in v1.1)
+- Worker proxy in front of R2 — requires Workers Paid ($5/month); not cost-effective at this scale
+- Private bucket + signed URLs — R2 zero-egress makes financial risk acceptable; defer unless abuse observed
 
 ## Context
 
@@ -67,9 +61,10 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - **Photos:** 1327 total. 1153 digital (with EXIF), 174 film scans (no EXIF — Photographer C).
 - **Event order:** prep → photoshooting → dining → hupa → dancing. Dinner before ceremony — this is the real schedule.
 - **Film scans:** CLIP KNN assignment. 174 film photos assigned to nearest cluster centroid from EXIF-labeled photos. cluster_confidence scores flag low-confidence assignments.
-- **Live site:** https://wedding-album.omelcer.workers.dev — 1309 photos confirmed live by user.
+- **Live site:** https://wedding-album.omelcer.workers.dev — 1309 photos live, EXIF stripped, CDN-ready. Safe to share with guests.
 - **Codebase:** ~2,750 LOC. Python 3.13 pipeline (uv). React 19 + Vite + Tailwind v4 + shadcn nova. Workers Static Assets deploy via wrangler.
-- **metadata.json:** 398 KB (1327 photos). Well under 1 MB constraint. Served from `https://pub-db0e5eba70a74d8cbe49b014f6329b9e.r2.dev`.
+- **metadata.json:** 398 KB (1309 photos). Well under 1 MB constraint. Served from `https://pub-db0e5eba70a74d8cbe49b014f6329b9e.r2.dev`.
+- **Security posture (v1.1):** All photos stripped of EXIF before upload. Cache-Control headers set on all R2 objects. Cloudflare billing alerts active. WAF rate-limiting descoped (see Out of Scope).
 
 ## Constraints
 
@@ -95,6 +90,9 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 | Workers Static Assets (`npx wrangler deploy`) over Pages | Current Cloudflare recommendation; Pages deprecated | ✓ Good — deployed successfully |
 | `VITE_METADATA_URL` from `pipeline/config.yaml` at build time | Single source of truth; prevents URL drift | ✓ Good — baked into production bundle |
 | shadcn nova preset + Heebo font | Beautiful RTL-friendly UI; Israeli web standard font | ✓ Good — visual checkpoint passed |
+| `exif=b""` kwarg on Pillow `.save()` | Explicit EXIF strip at output; orientation correction runs before via `exif_transpose` | ✓ Good — 6 tests pass; backward-compatible across Pillow versions |
+| Cache-Control as S3 `ExtraArgs` (`CacheControl` key) | No post-upload metadata patch; headers set atomically at upload time | ✓ Good — verified live on R2 via `curl -I` |
+| Descope CF-03 WAF rate limiting | Workers.dev free tier can't use WAF rules; Workers Paid costs $5/month — not justified for a 100-guest site | ✓ Good — Cloudflare DDoS protection covers large floods for free |
 
 ## Evolution
 
@@ -107,4 +105,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-17 after v1.1 milestone start*
+*Last updated: 2026-05-18 after v1.1 milestone*

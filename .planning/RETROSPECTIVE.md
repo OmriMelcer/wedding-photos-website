@@ -57,13 +57,58 @@
 
 ---
 
+## Milestone: v1.1 — Security & Hardening
+
+**Shipped:** 2026-05-18
+**Phases:** 3 | **Plans:** 4 | **Timeline:** 2 days (2026-05-17 → 2026-05-18)
+
+### What Was Built
+
+1. `pipeline/resize.py` — `exif=b""` added to both `.save()` calls; strips all GPS + device EXIF from resized output; 6 tests
+2. `pipeline/upload.py` — `CacheControl` key added to `ExtraArgs` on all 3 upload sites; `_upload_file()` signature extended with `extra_args`; 3 tests
+3. Cloudflare dashboard — $5/month billing alerts on R2 operations and Workers requests
+4. Re-upload run — 1309 photos + 1309 thumbs regenerated (EXIF stripped) and re-uploaded; live R2 headers verified via `curl -I`
+
+### What Worked
+
+- **TDD with small RED→GREEN cycles** — both Phase 6 plans followed the cycle; tests were written first, implementation followed; no surprises
+- **`exif=b""` approach** — simpler than a post-process strip; Pillow-native; no extra dependency
+- **Pre-flight verification script** — running `grep -c 'exif=b""'` and `grep -c 'max-age'` before the re-upload confirmed code was correct before committing 1309 uploads
+- **metadata.json SHA256 guard** — checking hash before and after resize confirmed cluster assignments were untouched
+
+### What Was Inefficient
+
+- **REQUIREMENTS.md checkbox tracking again** — SEC-01..04 were left unchecked even after Phase 6 and Phase 8 completed; required a fix at milestone close (same pattern as v1.0)
+- **Phase 7 had no formal PLAN.md** — Cloudflare dashboard steps are manual and not scriptable; no SUMMARY.md was produced; this is a documentation gap for dashboard-only work
+- **Phase 8 SUMMARY.md was not committed** — was untracked at milestone close; required manual staging
+
+### Patterns Established
+
+- **`ExtraArgs` pattern for S3/R2 object metadata** — `{"ContentType": "...", "CacheControl": "..."}` passed as 5th arg to `_upload_file()`; clean, testable, no post-upload patch needed
+- **Pre-flight grep checks before destructive pipeline runs** — verify EXIF and CacheControl code is present before running resize + upload on 1000+ photos
+- **SHA256 integrity guard on metadata.json** — hash before and after resize/upload to confirm cluster assignments unchanged
+
+### Key Lessons
+
+- **Update REQUIREMENTS.md checkboxes immediately when a plan completes** — carrying stale `[ ]` forward creates confusion at milestone close; set `[x]` in the same commit as the SUMMARY.md
+- **Commit phase SUMMARY.md files immediately** — untracked summary files at milestone close are a recurring issue; add to post-plan checklist
+- **Manual-only phases (dashboard config) still need a minimal SUMMARY.md** — even a 5-line "what was clicked, what was verified" file is enough; prevents a documentation gap at close
+
+### Cost Observations
+
+- Model mix: Sonnet 4.6 for planning and execution
+- Sessions: 2 days for 4 plans
+- Notable: all 4 plans were fast (<15 min each); Phase 8 was the longest due to the actual 1309-file pipeline run
+
+---
+
 ## Cross-Milestone Trends
 
-| Metric | v1.0 |
-|--------|------|
-| Timeline | 2 days |
-| Phases | 5 |
-| Plans | 16 |
-| LOC | ~2,750 |
-| Photos processed | 1327 |
-| Requirements shipped | 27/27 |
+| Metric | v1.0 | v1.1 |
+|--------|------|------|
+| Timeline | 2 days | 2 days |
+| Phases | 5 | 3 |
+| Plans | 16 | 4 |
+| Files changed | — | 15 |
+| Requirements shipped | 27/27 | 6/6 |
+| Test coverage | — | 17 pipeline tests (all pass) |
