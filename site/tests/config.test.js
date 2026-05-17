@@ -13,11 +13,11 @@ describe('config.js exports', () => {
     });
 
     it('maps phase keys to correct Hebrew display names', () => {
-      expect(PHASE_LABELS.prep).toBe('הכנות');
-      expect(PHASE_LABELS.photoshooting).toBe('צילומים');
-      expect(PHASE_LABELS.dining).toBe('ארוחה');
-      expect(PHASE_LABELS.hupa).toBe('חופה');
-      expect(PHASE_LABELS.dancing).toBe('ריקודים');
+      expect(PHASE_LABELS.prep).toBe('מתכוננים');
+      expect(PHASE_LABELS.photoshooting).toBe('מצטלמים');
+      expect(PHASE_LABELS.dining).toBe('אוכלים');
+      expect(PHASE_LABELS.hupa).toBe('מתחתנים');
+      expect(PHASE_LABELS.dancing).toBe('רוקדים');
     });
   });
 
@@ -41,9 +41,9 @@ describe('config.js exports', () => {
     });
 
     it('maps photographer keys to correct display names', () => {
-      expect(PHOTOGRAPHER_NAMES.abir_sultan).toBe('עביר סולטן');
+      expect(PHOTOGRAPHER_NAMES.abir_sultan).toBe('אביר סולטן');
       expect(PHOTOGRAPHER_NAMES.inbal_zeldin).toBe('ענבל זלדין');
-      expect(PHOTOGRAPHER_NAMES.magnate_images).toBe('Magnate Images');
+      expect(PHOTOGRAPHER_NAMES.magnate_images).toBe('מגנטים');
     });
   });
 
