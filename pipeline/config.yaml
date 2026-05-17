@@ -69,6 +69,6 @@ pipeline:
 # R2 non-secret config. Credentials come from env vars:
 #   R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY (see upload.py)
 r2:
-  bucket: "your-bucket-name"
-  endpoint: "https://ACCOUNT_ID.r2.cloudflarestorage.com"
-  r2_public_url: "https://pub-REPLACE_ME.r2.dev"
+  bucket: "wedding-album-noa-omri"
+  endpoint: "https://9404ec444cc9fa8171c37f951412fb42.r2.cloudflarestorage.com"
+  r2_public_url: "https://pub-db0e5eba70a74d8cbe49b014f6329b9e.r2.dev"
