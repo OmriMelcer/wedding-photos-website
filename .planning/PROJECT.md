@@ -33,10 +33,24 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - ✓ R2 CORS configured (GET+HEAD, any origin, maxAge 3600) — v1.0
 - ✓ Site deployed to Cloudflare Workers Static Assets — v1.0
 
+## Current Milestone: v1.1 Security & Hardening
+
+**Goal:** Harden the live site against cost-incurring attacks and privacy leaks before sharing the URL with guests, then re-upload all photos with fixes applied.
+
+**Target features:**
+- `Cache-Control` headers on all R2 uploads (metadata.json + photos + thumbs)
+- EXIF strip in `pipeline/resize.py` — remove GPS and sensitive metadata before upload
+- WAF / rate limit on the Workers domain to throttle request floods
+- Cloudflare budget alert ($5/month notification)
+- Re-run resize + upload pipeline — regenerate and re-upload all 1327 photos
+
 ### Active
 
-- [ ] Cherry-pick `site/wrangler.toml` commits (c7aa6a2, 3b578f6) onto main to make deployment reproducible
-- [ ] Update photographer labels from A/B/C to real names in pipeline/config.yaml before sharing the URL
+- [ ] Add `Cache-Control` headers to R2 uploads (`max-age=86400` for metadata.json; `immutable` for photos/thumbs)
+- [ ] Strip EXIF (GPS + all metadata) in `pipeline/resize.py` before saving
+- [ ] Configure WAF rate limit rule on Workers domain (60 req/min per IP)
+- [ ] Set Cloudflare budget alert at $5/month for R2 and Workers
+- [ ] Re-run resize + upload pipeline with EXIF-stripped photos and correct cache headers
 
 ### Out of Scope
 
@@ -93,4 +107,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-17 after v1.0 milestone*
+*Last updated: 2026-05-17 after v1.1 milestone start*
