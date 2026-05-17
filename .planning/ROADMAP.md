@@ -147,7 +147,16 @@ Plans:
   2. The Vite build runs clean and wrangler deploys the dist/ folder to Cloudflare Pages without errors
   3. A guest can open the public Cloudflare Pages URL in a browser, see the gallery load, and use all filters
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 05-01-PLAN.md — Enable R2 public access, write cors.json + apply via wrangler r2 bucket cors set, fill in pipeline/config.yaml r2 placeholders (INFRA-01)
+
+**Wave 2** *(blocked on Wave 1 — needs real R2 public URL for VITE_METADATA_URL)*
+
+- [ ] 05-02-PLAN.md — Create site/wrangler.toml (Workers Static Assets SPA), build site with VITE_METADATA_URL baked in, npx wrangler deploy, live URL verification (INFRA-02)
 
 ## Progress
 
@@ -160,4 +169,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
 | 4. React Site | 4/4 | Complete   | 2026-05-17 |
-| 5. Infrastructure & Deployment | 0/TBD | Not started | - |
+| 5. Infrastructure & Deployment | 0/2 | Not started | - |
