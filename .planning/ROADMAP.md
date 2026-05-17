@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Photo Acquisition** - Automated download of all photo sources to local folders with manual fallback (completed 2026-05-16)
 - [x] **Phase 2: Pipeline Processing** - EXIF extraction, photographer tagging, CLIP embeddings, event cluster assignment, confidence scoring, and resize (completed 2026-05-16)
 - [x] **Phase 3: Pipeline Upload** - Compressed images and metadata.json pushed to Cloudflare R2 via config-driven upload script (completed 2026-05-16)
-- [ ] **Phase 4: React Site** - Masonry gallery, lightbox, photographer/phase filters, Hebrew RTL UI, and face-filter gating
+- [x] **Phase 4: React Site** - Masonry gallery, lightbox, photographer/phase filters, Hebrew RTL UI, and face-filter gating (completed 2026-05-17)
 - [ ] **Phase 5: Infrastructure & Deployment** - R2 bucket public access, Cloudflare Pages deploy, end-to-end live site
 
 ## Phase Details
@@ -134,7 +134,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 — needs running site)*
 
-- [ ] 04-04-PLAN.md — Visual & interactive verification checkpoint (DSGN-01, I18N-01, I18N-02, GALL-02 responsive, GALL-04 navigation, FILT-04 DOM absence)
+- [x] 04-04-PLAN.md — Visual & interactive verification checkpoint (DSGN-01, I18N-01, I18N-02, GALL-02 responsive, GALL-04 navigation, FILT-04 DOM absence)
 
 ### Phase 5: Infrastructure & Deployment
 
@@ -159,5 +159,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Photo Acquisition | 3/3 | Complete   | 2026-05-16 |
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
-| 4. React Site | 3/4 | In Progress|  |
+| 4. React Site | 4/4 | Complete   | 2026-05-17 |
 | 5. Infrastructure & Deployment | 0/TBD | Not started | - |
