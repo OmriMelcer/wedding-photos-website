@@ -1,0 +1,69 @@
+# Retrospective: Wedding Photo Album
+
+## Milestone: v1.0 — MVP
+
+**Shipped:** 2026-05-17
+**Phases:** 5 | **Plans:** 16 | **Timeline:** 2 days (2026-05-16 → 2026-05-17)
+
+### What Was Built
+
+1. `pipeline/acquire_google.py` + `acquire_pictime.py` — gallery-dl-based photo download with requests+BeautifulSoup fallback
+2. `pipeline/ingest.py` — EXIF extraction, Israel-time normalization, catalog.json (1327 entries)
+3. `pipeline/embed.py` — CLIP ViT-B/32 embeddings for 1327 photos (embeddings.npy, ~3m20s CPU)
+4. `pipeline/cluster.py` — time-window assignment for 1153 EXIF photos; KNN assignment for 174 film photos; low_confidence.txt
+5. `pipeline/resize.py` — 1327 web photos (≤2000px) + 1327 thumbnails (≤400px), EXIF orientation correction
+6. `pipeline/upload.py` — concurrent R2 upload (16 threads); metadata.json 398 KB, uploaded last
+7. React 19 site — Hebrew RTL masonry gallery, shadcn nova + Heebo, usePhotos/useFilters hooks, 9 components, lightbox
+8. Infrastructure — R2 CORS (GET+HEAD), Workers Static Assets deploy, live at https://wedding-album.omelcer.workers.dev
+
+### What Worked
+
+- **gallery-dl for Google Photos** — worked natively with shared album URLs, no selenium or auth complexity
+- **CLIP CPU-only pipeline** — 3m20s for 1327 photos on M-series Mac; well within "minutes" budget from spec
+- **One-shot pipeline philosophy** — no retry logic, no partial recovery; made each script simple and predictable
+- **Immediate live verification** — user verified live URL in browser at end of Phase 5; no deferred UAT
+- **shadcn nova + Heebo** — produced a polished Hebrew RTL gallery in one plan without custom CSS from scratch
+- **pipeline/config.yaml as single source of truth** — upload.py and VITE_METADATA_URL both derive from the same file; no drift
+
+### What Was Inefficient
+
+- **REQUIREMENTS.md checkbox tracking** — checkbox states were not updated as Phase 1–3 executed; required a documentation fix at milestone close rather than inline
+- **ROADMAP.md progress table** — Phase 2 showed 2/5 in the table despite all 5 summaries existing; tracking gap
+- **Orphaned branch incident** — implementation commits (wrangler.toml, production build) landed on a divergent branch that was never merged into main; docs-only commit was pushed to main separately. Result: live deployment non-reproducible from main
+- **wrangler.toml missing from main** — requires cherry-pick (c7aa6a2, 3b578f6) as post-milestone cleanup
+
+### Patterns Established
+
+- **gallery-dl as primary + requests+BS4 fallback** — robust photo acquisition without selenium
+- **Israel-local-time normalization** — ignore all EXIF offset values; treat as GMT+02:00 unconditionally
+- **CLIP KNN cluster assignment** — compute centroids from EXIF-labeled photos first; assign no-EXIF photos to nearest centroid
+- **GET+HEAD-only CORS for R2 public buckets** — no AllowedHeaders, no write methods; minimal surface area
+- **pipeline/config.yaml as build-time env source** — `VITE_METADATA_URL=$(python3 -c "import yaml; print(c['r2']['r2_public_url'])")`
+- **Workers Static Assets wrangler.toml pattern** — `name`, `compatibility_date`, `workers_dev=true`, `[assets]` with `not_found_handling="single-page-application"`
+- **VITE_METADATA_URL bake-in verification** — always `grep -r "pub-" site/dist/assets/` after every production build
+
+### Key Lessons
+
+- **Verify merge state before pushing docs commits** — the orphaned-branch incident happened because a docs commit was pushed to main while implementation commits were on a different branch. Always merge or cherry-pick implementation first.
+- **wrangler auth check before writing CORS plans** — `npx wrangler whoami` takes 1 second; can downgrade a blocking human-verify gate to an automated task if already authenticated
+- **VITE_ env vars are silent fallbacks** — Vite bakes in the fallback `/metadata.json` with exit 0 and no warning if the env var isn't set inline with the build command
+- **`dist/` is gitignored — production builds live on CDN only** — future re-verification of the production bundle must use the live deployed URL, not local dist contents
+
+### Cost Observations
+
+- Model mix: predominantly Sonnet 4.6 (main workhorse), Opus for planning phases
+- Sessions: 2 days (one build day for pipeline + one for site + infra)
+- Notable: entire pipeline + site + deployment in 2 days matches the "1-day build budget" constraint from the spec
+
+---
+
+## Cross-Milestone Trends
+
+| Metric | v1.0 |
+|--------|------|
+| Timeline | 2 days |
+| Phases | 5 |
+| Plans | 16 |
+| LOC | ~2,750 |
+| Photos processed | 1327 |
+| Requirements shipped | 27/27 |

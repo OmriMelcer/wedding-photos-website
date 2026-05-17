@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: "Completed 05-02-PLAN.md — live site verified at https://wedding-album.omelcer.workers.dev"
-last_updated: "2026-05-17T15:34:34.454Z"
-last_activity: 2026-05-17 -- Phase 05 marked complete
+status: milestone_complete
+stopped_at: "v1.0 MVP milestone archived — ready for next milestone"
+last_updated: "2026-05-17T00:00:00Z"
+last_activity: 2026-05-17 -- v1.0 MVP milestone closed and archived
 progress:
   total_phases: 5
   completed_phases: 5
@@ -18,17 +18,17 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-05-16)
+See: .planning/PROJECT.md (updated 2026-05-17)
 
 **Core value:** Every guest can find and view every photo from the wedding, filtered by who shot it and when it happened — with zero hosting costs and no maintenance burden.
-**Current focus:** Phase 05 — Infrastructure & Deployment
+**Current focus:** v1.0 complete — planning next milestone
 
 ## Current Position
 
-Phase: 05 — COMPLETE
-Plan: 2 of 2
-Status: Phase 05 complete
-Last activity: 2026-05-17 -- Phase 05 marked complete
+Milestone: v1.0 MVP — SHIPPED 2026-05-17
+Status: Milestone complete
+Live URL: https://wedding-album.omelcer.workers.dev
+Last activity: 2026-05-17 -- v1.0 MVP milestone closed and archived
 
 Progress: [██████████] 100%
 
