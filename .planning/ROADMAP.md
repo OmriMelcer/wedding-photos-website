@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Pipeline Processing** - EXIF extraction, photographer tagging, CLIP embeddings, event cluster assignment, confidence scoring, and resize (completed 2026-05-16)
 - [x] **Phase 3: Pipeline Upload** - Compressed images and metadata.json pushed to Cloudflare R2 via config-driven upload script (completed 2026-05-16)
 - [x] **Phase 4: React Site** - Masonry gallery, lightbox, photographer/phase filters, Hebrew RTL UI, and face-filter gating (completed 2026-05-17)
-- [ ] **Phase 5: Infrastructure & Deployment** - R2 bucket public access, Cloudflare Pages deploy, end-to-end live site
+- [x] **Phase 5: Infrastructure & Deployment** - R2 bucket public access, Cloudflare Pages deploy, end-to-end live site (completed 2026-05-17)
 
 ## Phase Details
 
@@ -156,7 +156,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 — needs real R2 public URL for VITE_METADATA_URL)*
 
-- [ ] 05-02-PLAN.md — Create site/wrangler.toml (Workers Static Assets SPA), build site with VITE_METADATA_URL baked in, npx wrangler deploy, live URL verification (INFRA-02)
+- [x] 05-02-PLAN.md — Create site/wrangler.toml (Workers Static Assets SPA), build site with VITE_METADATA_URL baked in, npx wrangler deploy, live URL verification (INFRA-02)
 
 ## Progress
 
@@ -169,4 +169,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
 | 4. React Site | 4/4 | Complete   | 2026-05-17 |
-| 5. Infrastructure & Deployment | 1/2 | In Progress | - |
+| 5. Infrastructure & Deployment | 2/2 | Complete   | 2026-05-17 |

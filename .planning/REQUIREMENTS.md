@@ -54,7 +54,7 @@
 ### Infrastructure
 
 - [x] **INFRA-01**: Cloudflare R2 bucket configured with CORS and public read access
-- [ ] **INFRA-02**: React site built with Vite and deployed to Cloudflare Pages via wrangler
+- [x] **INFRA-02**: React site built with Vite and deployed to Cloudflare Pages via wrangler
 
 ## v2 Requirements
 
@@ -105,7 +105,7 @@
 | I18N-02 | Phase 4 | Complete |
 | I18N-03 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Complete |
-| INFRA-02 | Phase 5 | Pending |
+| INFRA-02 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 27 total

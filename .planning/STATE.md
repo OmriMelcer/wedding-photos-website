@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-05-17T14:55:18Z"
-last_activity: 2026-05-17 -- Completed Phase 05 Plan 01 (R2 CORS + config.yaml)
+status: verifying
+stopped_at: Completed 05-02-PLAN.md — live site at https://wedding-album.omelcer.workers.dev
+last_updated: "2026-05-17T15:30:00Z"
+last_activity: 2026-05-17 -- Completed Phase 05 Plan 02 (Workers Static Assets deploy, INFRA-02)
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 16
-  completed_plans: 14
-  percent: 80
+  completed_plans: 16
+  percent: 100
 ---
 
 # Project State
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-05-16)
 
 Phase: 05 (Infrastructure & Deployment) — EXECUTING
 Plan: 2 of 2
-Status: Executing Phase 05
-Last activity: 2026-05-17 -- Completed Phase 05 Plan 01 (R2 CORS + config.yaml)
+Status: Phase complete — ready for verification
+Last activity: 2026-05-17
 
-Progress: [█████████░] 96%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Progress: [█████████░] 96%
 | Phase 02 P01 | 600 | 3 tasks | 16 files |
 | Phase 04-react-site P01 | 900 | 2 tasks | 16 files |
 | Phase 04-react-site P03 | 25min | 2 tasks | 13 files |
+| Phase 05-infrastructure-deployment P02 | 15min | 4 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,9 @@ Recent decisions affecting current work:
 
 - [Phase 05-01]: Used GET+HEAD only CORS policy (no AllowedHeaders, no PUT/POST/DELETE) per T-05-01 threat mitigation
 - [Phase 05-01]: R2 public URL stored in pipeline/config.yaml r2.r2_public_url for Plan 05-02 VITE_METADATA_URL
+- [Phase 05-02]: Workers Static Assets (npx wrangler deploy) used — not deprecated wrangler pages deploy
+- [Phase 05-02]: workers_dev = true added to wrangler.toml to make workers.dev subdomain explicit
+- [Phase 05-02]: VITE_METADATA_URL sourced from pipeline/config.yaml r2.r2_public_url at Vite build time
 - [Phase ?]: Used shadcn nova preset for non-interactive init; Heebo font override applied in @theme inline block
 
 ### Pending Todos
@@ -86,6 +90,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-17T14:55:18Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-05-17T15:30:00Z
+Stopped at: Completed 05-02-PLAN.md — live site verified at https://wedding-album.omelcer.workers.dev
 Resume file: None
