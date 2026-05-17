@@ -23,7 +23,7 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 ### v1.1 Security & Hardening
 
 - [ ] **Phase 6: Pipeline Code Changes** — Add EXIF stripping and Cache-Control headers to pipeline/resize.py and pipeline/upload.py
-- [ ] **Phase 7: Cloudflare Hardening** — Configure R2 and Workers budget alerts in Cloudflare dashboard
+- [x] **Phase 7: Cloudflare Hardening** — Configure R2 and Workers budget alerts in Cloudflare dashboard
 - [ ] **Phase 8: Re-upload** — Re-run resize + upload stages only to push EXIF-stripped photos with correct cache headers; verify live
 
 ## Phase Details
@@ -70,5 +70,5 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 | 4. React Site | v1.0 | 4/4 | Complete | 2026-05-17 |
 | 5. Infrastructure & Deployment | v1.0 | 2/2 | Complete | 2026-05-17 |
 | 6. Pipeline Code Changes | v1.1 | 0/? | Not started | - |
-| 7. Cloudflare Hardening | v1.1 | 0/? | Not started | - |
+| 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 0/? | Not started | - |

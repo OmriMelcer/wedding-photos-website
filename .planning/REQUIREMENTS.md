@@ -69,8 +69,8 @@ Security hardening before sharing the URL with guests. Phases 6–8.
 
 ### Cloudflare Hardening
 
-- [ ] **CF-01**: Cloudflare account has a budget alert at $5/month for R2 operations
-- [ ] **CF-02**: Cloudflare account has a budget alert at $5/month for Workers requests
+- [x] **CF-01**: Cloudflare account has a budget alert at $5/month for R2 operations
+- [x] **CF-02**: Cloudflare account has a budget alert at $5/month for Workers requests
 - ~~**CF-03**~~: *(descoped — see Out of Scope)*
 
 ## v2 Requirements
