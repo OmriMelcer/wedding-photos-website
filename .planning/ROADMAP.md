@@ -37,7 +37,10 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
   2. Running `pipeline/upload.py` for metadata.json sends `Cache-Control: public, max-age=86400` as object metadata on the R2 upload call
   3. Running `pipeline/upload.py` for photos and thumbnails sends `Cache-Control: public, max-age=31536000, immutable` as object metadata on each R2 upload call
   4. Files in `sources/` are byte-for-byte unchanged after any pipeline run (verified by checksum or `git status`)
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 06-01-PLAN.md — EXIF stripping in pipeline/resize.py (SEC-01) with TDD: failing tests then exif=b"" on both .save() calls
+- [ ] 06-02-PLAN.md — Cache-Control headers in pipeline/upload.py (SEC-02, SEC-03) with TDD: failing tests then extra_args plumbing + CacheControl at all 3 upload sites
 
 ### Phase 7: Cloudflare Hardening
 **Goal**: The Cloudflare account has spending guardrails so cost attacks are detected before the monthly invoice
@@ -69,6 +72,6 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 | 3. Pipeline Upload | v1.0 | 2/2 | Complete | 2026-05-16 |
 | 4. React Site | v1.0 | 4/4 | Complete | 2026-05-17 |
 | 5. Infrastructure & Deployment | v1.0 | 2/2 | Complete | 2026-05-17 |
-| 6. Pipeline Code Changes | v1.1 | 0/? | Not started | - |
+| 6. Pipeline Code Changes | v1.1 | 0/2 | Planned | - |
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 0/? | Not started | - |
