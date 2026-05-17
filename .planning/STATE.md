@@ -2,11 +2,11 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Security & Hardening
-status: planning
-last_updated: "2026-05-17T15:57:08.539Z"
+status: in_progress
+last_updated: "2026-05-17T00:00:00.000Z"
 last_activity: 2026-05-17
 progress:
-  total_phases: 0
+  total_phases: 3
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -20,14 +20,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-17)
 
 **Core value:** Every guest can find and view every photo from the wedding, filtered by who shot it and when it happened — with zero hosting costs and no maintenance burden.
-**Current focus:** v1.0 complete — planning next milestone
+**Current focus:** v1.1 Security & Hardening — Phase 6 ready to plan
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 6 — Pipeline Code Changes
 Plan: —
-Status: Defining requirements
-Last activity: 2026-05-17 — Milestone v1.1 started
+Status: Ready to plan
+Last activity: 2026-05-17 — Roadmap created for v1.1
+
+[===.......] 0/3 phases complete
 
 ## Performance Metrics
 
@@ -68,14 +70,26 @@ Recent decisions affecting current work:
 - [Phase 05-02]: VITE_METADATA_URL sourced from pipeline/config.yaml r2.r2_public_url at Vite build time
 - [Phase ?]: Used shadcn nova preset for non-interactive init; Heebo font override applied in @theme inline block
 
+### Phase 6 Constraints
+
+- EXIF stripping applies only to the web-quality output images written by resize.py — original files in sources/ must never be touched
+- Cache-Control headers are set as object-level metadata on the S3/R2 boto3 upload call (ContentType + CacheControl kwargs)
+- metadata.json gets `max-age=86400` (24 h); photos and thumbs get `max-age=31536000, immutable`
+
+### Phase 8 Constraints
+
+- Re-run ONLY pipeline/resize.py and pipeline/upload.py — never ingest.py, embed.py, or cluster.py
+- metadata.json cluster assignments are correct and must not be regenerated
+- CLIP embeddings (~3m20s) do not need to be recomputed
+
 ### Pending Todos
 
 None yet.
 
 ### Blockers/Concerns
 
-- Phase 1 depends on Google Photos shared album links being accessible and a working pic-time scrape strategy. Verify before execution.
-- Film scans (Photographer C) have no EXIF — CLIP KNN is the only assignment path. Low-confidence flags may require manual review before upload.
+- Phase 8 depends on Phase 6 code changes being complete and tested locally before the re-upload run.
+- Phase 7 (Cloudflare dashboard) can be done in parallel with Phase 6 — no code dependency.
 
 ## Deferred Items
 
