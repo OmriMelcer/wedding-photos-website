@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Security & Hardening
 status: executing
-stopped_at: Phase 6 context gathered
-last_updated: "2026-05-17T16:53:59.915Z"
-last_activity: 2026-05-17 -- Phase 6 planning complete
+stopped_at: Phase 6 complete
+last_updated: "2026-05-17T18:00:00.000Z"
+last_activity: 2026-05-17 -- Phase 6 complete (2/2 plans)
 progress:
   total_phases: 3
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 0
-  percent: 0
+  completed_plans: 2
+  percent: 33
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-17)
 
 **Core value:** Every guest can find and view every photo from the wedding, filtered by who shot it and when it happened — with zero hosting costs and no maintenance burden.
-**Current focus:** v1.1 Security & Hardening — Phase 6 ready to plan
+**Current focus:** v1.1 Security & Hardening — Phase 8 Re-upload (Phase 6 complete)
 
 ## Current Position
 
-Phase: 6 — Pipeline Code Changes (active) | Phase 7 ✓ complete
+Phase: 8 — Re-upload (next) | Phase 6 ✓ complete | Phase 7 ✓ complete
 Plan: —
-Status: Ready to execute
-Last activity: 2026-05-17 -- Phase 6 planning complete
+Status: Phase 6 complete; Phase 8 ready (needs plan)
+Last activity: 2026-05-17 -- Phase 6 complete (2/2 plans, 17/17 tests pass)
 
-[======....] 1/3 phases complete
+[========..] 2/3 phases complete
 
 ## Performance Metrics
 
