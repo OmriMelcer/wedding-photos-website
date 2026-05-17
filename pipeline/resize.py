@@ -56,11 +56,13 @@ def resize_photo(src: Path, web_out: Path, thumb_out: Path) -> None:
     # the web save.
     web = img.copy()
     web.thumbnail((WEB_MAX, WEB_MAX), Image.Resampling.LANCZOS)
-    web.save(web_out, format="JPEG", quality=JPEG_QUALITY, optimize=JPEG_OPTIMIZE)
+    # exif=b"" strips all EXIF from output; exif_transpose() above already
+    # corrected orientation, so no metadata survives to the guest-facing file.
+    web.save(web_out, format="JPEG", quality=JPEG_QUALITY, optimize=JPEG_OPTIMIZE, exif=b"")
 
     thumb = img.copy()
     thumb.thumbnail((THUMB_MAX, THUMB_MAX), Image.Resampling.LANCZOS)
-    thumb.save(thumb_out, format="JPEG", quality=JPEG_QUALITY, optimize=JPEG_OPTIMIZE)
+    thumb.save(thumb_out, format="JPEG", quality=JPEG_QUALITY, optimize=JPEG_OPTIMIZE, exif=b"")
 
 
 def main() -> None:
