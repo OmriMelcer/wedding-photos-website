@@ -37,7 +37,14 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - ✓ Cloudflare billing alerts at $5/month for R2 operations and Workers requests — v1.1
 - ✓ All 1309 photos regenerated with EXIF stripped and re-uploaded with correct headers; live R2 verification passed — v1.1
 
-### Active (v2)
+### Active (v1.2)
+
+- [ ] User can download a single photo from the lightbox (DWNL-01)
+- [ ] User can download a photo via icon on gallery card hover (DWNL-02)
+- [ ] Top bar displays 4 buttons linking to original source albums (LINK-01)
+- [ ] Album links open in a new tab (LINK-02)
+
+### Deferred (v2)
 
 - [ ] Face recognition pipeline: detect faces, cluster into person identities (FACE-01)
 - [ ] User labels face clusters with names (FACE-02)
@@ -104,5 +111,14 @@ This document evolves at phase transitions and milestone boundaries.
 3. Audit Out of Scope — reasons still valid?
 4. Update Context with current state
 
+## Current Milestone: v1.2 Downloads & Album Links
+
+**Goal:** Let guests download individual photos and jump to the original full-resolution source albums in one click.
+
+**Target features:**
+- Download button in the lightbox (current photo, web-compressed from R2)
+- Download icon on gallery card hover
+- 4 static top-bar buttons linking to the 3 Google Photos albums + 1 pic-time gallery
+
 ---
-*Last updated: 2026-05-18 after v1.1 milestone*
+*Last updated: 2026-05-18 after v1.2 milestone start*
