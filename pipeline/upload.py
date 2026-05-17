@@ -88,12 +88,12 @@ def _make_s3_client(config: dict):
         sys.exit(1)
 
 
-def _upload_file(s3, bucket: str, local_path: Path, key: str) -> None:
+def _upload_file(s3, bucket: str, local_path: Path, key: str, extra_args: dict | None = None) -> None:
     """Upload a single file to R2.
 
     No retry logic — one-shot pipeline philosophy. Exceptions propagate to caller.
     """
-    s3.upload_file(str(local_path), bucket, key)
+    s3.upload_file(str(local_path), bucket, key, ExtraArgs=extra_args or {})
 
 
 def main() -> None:
@@ -175,6 +175,7 @@ def main() -> None:
                 bucket,
                 _PHOTOS_DIR / photo["filename"],
                 f"photos/{photo['id']}.jpg",
+                {"ContentType": "image/jpeg", "CacheControl": "public, max-age=31536000, immutable"},
             )
             thumb_future = executor.submit(
                 _upload_file,
@@ -182,6 +183,7 @@ def main() -> None:
                 bucket,
                 _THUMBS_DIR / photo["filename"],
                 f"thumbs/{photo['id']}.jpg",
+                {"ContentType": "image/jpeg", "CacheControl": "public, max-age=31536000, immutable"},
             )
             futures[photo_future] = f"photos/{photo['id']}.jpg"
             futures[thumb_future] = f"thumbs/{photo['id']}.jpg"
@@ -203,7 +205,7 @@ def main() -> None:
         str(_METADATA_PATH),
         bucket,
         "metadata.json",
-        ExtraArgs={"ContentType": "application/json"},
+        ExtraArgs={"ContentType": "application/json", "CacheControl": "public, max-age=86400"},
     )
 
     # 11. Summary
