@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-05-17T14:31:14.876Z"
-last_activity: 2026-05-17 -- Phase 5 planning complete
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-05-17T14:55:18Z"
+last_activity: 2026-05-17 -- Completed Phase 05 Plan 01 (R2 CORS + config.yaml)
 progress:
   total_phases: 5
   completed_phases: 4
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-05-16)
 
 ## Current Position
 
-Phase: 04 — COMPLETE
-Plan: 4 of 4 complete
-Status: Ready to execute
-Last activity: 2026-05-17 -- Phase 5 planning complete
+Phase: 05 (Infrastructure & Deployment) — EXECUTING
+Plan: 2 of 2
+Status: Executing Phase 05
+Last activity: 2026-05-17 -- Completed Phase 05 Plan 01 (R2 CORS + config.yaml)
 
-Progress: [█████████░] 93%
+Progress: [█████████░] 96%
 
 ## Performance Metrics
 
@@ -63,7 +63,8 @@ Progress: [█████████░] 93%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- — execution has not started.
+- [Phase 05-01]: Used GET+HEAD only CORS policy (no AllowedHeaders, no PUT/POST/DELETE) per T-05-01 threat mitigation
+- [Phase 05-01]: R2 public URL stored in pipeline/config.yaml r2.r2_public_url for Plan 05-02 VITE_METADATA_URL
 - [Phase ?]: Used shadcn nova preset for non-interactive init; Heebo font override applied in @theme inline block
 
 ### Pending Todos
@@ -85,6 +86,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-16T21:53:26.741Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-05-17T14:55:18Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None

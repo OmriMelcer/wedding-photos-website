@@ -152,7 +152,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 05-01-PLAN.md — Enable R2 public access, write cors.json + apply via wrangler r2 bucket cors set, fill in pipeline/config.yaml r2 placeholders (INFRA-01)
+- [x] 05-01-PLAN.md — Enable R2 public access, write cors.json + apply via wrangler r2 bucket cors set, fill in pipeline/config.yaml r2 placeholders (INFRA-01)
 
 **Wave 2** *(blocked on Wave 1 — needs real R2 public URL for VITE_METADATA_URL)*
 
@@ -169,4 +169,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Pipeline Processing | 2/5 | In Progress|  |
 | 3. Pipeline Upload | 2/2 | Complete   | 2026-05-16 |
 | 4. React Site | 4/4 | Complete   | 2026-05-17 |
-| 5. Infrastructure & Deployment | 0/2 | Not started | - |
+| 5. Infrastructure & Deployment | 1/2 | In Progress | - |
