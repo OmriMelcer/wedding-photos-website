@@ -34,7 +34,7 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 
 ### v1.2 Downloads & Album Links
 
-- [ ] **Phase 9: Downloads & Album Links** - Guests can download photos and jump to source albums from the gallery
+- [x] **Phase 9: Downloads & Album Links** - Guests can download photos and jump to source albums from the gallery (completed 2026-05-23)
 
 ## Phase Details
 
@@ -51,7 +51,7 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 **Plans**: 3 plans
   - [x] 09-01-PLAN.md — Add ALBUM_LINKS to config.js + TopBar component (CONF-01, LINK-01, LINK-02)
   - [x] 09-02-PLAN.md — PhotoCard hover-visible download icon (DWNL-02)
-  - [ ] 09-03-PLAN.md — Lightbox yarl Download plugin + per-slide download metadata (DWNL-01)
+  - [x] 09-03-PLAN.md — Lightbox yarl Download plugin + per-slide download metadata (DWNL-01)
 **UI hint**: yes
 
 ## Progress
@@ -66,4 +66,4 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 | 6. Pipeline Code Changes | v1.1 | 2/2 | Complete | 2026-05-17 |
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
-| 9. Downloads & Album Links | v1.2 | 2/3 | In Progress|  |
+| 9. Downloads & Album Links | v1.2 | 3/3 | Complete   | 2026-05-23 |

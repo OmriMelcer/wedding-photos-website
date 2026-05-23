@@ -8,7 +8,7 @@
 
 ### Download
 
-- [ ] **DWNL-01**: User can download the currently viewed photo from the lightbox (fetches R2 URL, triggers browser download with original filename)
+- [x] **DWNL-01**: User can download the currently viewed photo from the lightbox (fetches R2 URL, triggers browser download with original filename)
 - [x] **DWNL-02**: User can download a photo from the gallery grid via a download icon that appears on hover
 
 ### Album Links
@@ -42,7 +42,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DWNL-01 | Phase 9 | Pending |
+| DWNL-01 | Phase 9 | Complete |
 | DWNL-02 | Phase 9 | Complete |
 | LINK-01 | Phase 9 | Complete |
 | LINK-02 | Phase 9 | Complete |
