@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.3
 milestone_name: Lightbox Zoom
-status: roadmapped
-last_updated: "2026-05-23"
-last_activity: 2026-05-23
+status: executing
+last_updated: "2026-05-23T19:28:18.248Z"
+last_activity: 2026-05-23 -- Phase 10 planning complete
 progress:
   total_phases: 1
   completed_phases: 0
-  total_plans: 0
+  total_plans: 2
   completed_plans: 0
   percent: 0
 ---
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-05-23)
 
 Phase: 10 (Zoom & Pan)
 Plan: Not started
-Status: Roadmap complete — ready to plan Phase 10
-Last activity: 2026-05-23 — Roadmap created for v1.3
+Status: Ready to execute
+Last activity: 2026-05-23 -- Phase 10 planning complete
 
 **Progress:** `[ 0 / 1 phases complete ]`
 
@@ -47,6 +47,7 @@ Last activity: 2026-05-23 — Roadmap created for v1.3
 Decisions are logged in PROJECT.md Key Decisions table.
 
 Key v1.3 pre-decisions (from research):
+
 - `scrollToZoom: true` — safe for modal lightbox; page-scroll bleed issue (#248) only affects Inline-variant. Three of four researchers confirm. One-line rollback if smoke test reveals regression.
 - `pinchZoomV4: true` — prevents iOS swipe-block bug (residual zoom after fast pinch-out). Fix was shipped in yarl v3.27.0; v3.32.0 is installed. "Experimental" label is historical; no known regression.
 - `maxZoomPixelRatio: 3` — MANDATORY. Default of 1 silently disables zoom on every retina/mobile device.
