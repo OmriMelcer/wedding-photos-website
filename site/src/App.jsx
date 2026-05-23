@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { usePhotos } from '@/hooks/usePhotos';
 import { useFilters } from '@/hooks/useFilters';
+import TopBar from '@/components/TopBar';
 import Filters from '@/components/Filters';
 import Gallery from '@/components/Gallery';
 import LightboxWrapper from '@/components/Lightbox';
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-stone-50">
+      <TopBar />
       <Filters
         people={people}
         selectedPhotographers={selectedPhotographers}
