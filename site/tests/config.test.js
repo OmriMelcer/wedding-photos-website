@@ -3,6 +3,7 @@ import {
   PHASE_LABELS,
   PHASE_ORDER,
   PHOTOGRAPHER_NAMES,
+  ALBUM_LINKS,
   METADATA_URL,
 } from '@/config';
 
@@ -50,6 +51,39 @@ describe('config.js exports', () => {
   describe('METADATA_URL', () => {
     it('defaults to /metadata.json when VITE_METADATA_URL is not set', () => {
       expect(METADATA_URL).toBe('/metadata.json');
+    });
+  });
+
+  describe('ALBUM_LINKS', () => {
+    it('is exported as an array', () => {
+      expect(Array.isArray(ALBUM_LINKS)).toBe(true);
+    });
+
+    it('has exactly 4 entries', () => {
+      expect(ALBUM_LINKS).toHaveLength(4);
+    });
+
+    it('every entry has label (non-empty string) and url (string) keys', () => {
+      ALBUM_LINKS.forEach(entry => {
+        expect(typeof entry.label).toBe('string');
+        expect(entry.label.length).toBeGreaterThan(0);
+        expect(typeof entry.url).toBe('string');
+      });
+    });
+
+    it('labels match exactly in the specified order', () => {
+      expect(ALBUM_LINKS.map(e => e.label)).toEqual([
+        'אביר סולטן',
+        'ענבל זלדין',
+        'מגנטים',
+        'Pic-Time',
+      ]);
+    });
+
+    it('every entry url is a string', () => {
+      ALBUM_LINKS.forEach(entry => {
+        expect(typeof entry.url).toBe('string');
+      });
     });
   });
 });

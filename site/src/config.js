@@ -19,5 +19,13 @@ export const PHOTOGRAPHER_NAMES = {
   magnate_images: 'מגנטים',
 };
 
+// Album URLs — replace '#' placeholders with the actual Google Photos / Pic-Time album URLs. Per CONF-01 these must remain in config.js so component code does not change.
+export const ALBUM_LINKS = [
+  { label: 'אביר סולטן', url: '#' },
+  { label: 'ענבל זלדין', url: '#' },
+  { label: 'מגנטים', url: '#' },
+  { label: 'Pic-Time', url: '#' },
+];
+
 // Override with VITE_METADATA_URL for production (R2 URL)
 export const METADATA_URL = import.meta.env.VITE_METADATA_URL || '/metadata.json';
