@@ -1,8 +1,10 @@
 name = "wedding-album"
 compatibility_date = "2026-05-17"
 workers_dev = true
+main = "worker.js"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 # serves index.html for unknown paths — required for React single-page application routing
 not_found_handling = "single-page-application"
