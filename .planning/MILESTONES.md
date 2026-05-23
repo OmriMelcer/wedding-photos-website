@@ -57,3 +57,31 @@ Security hardening before sharing the gallery URL with guests: all 1309 photos r
 
 - Face recognition: FACE-01..04 still in v2 scope
 - WAF/rate-limiting: CF-03 descoped permanently (free tier limitation on Workers.dev)
+
+---
+
+## v1.2 Downloads & Album Links — ✅ SHIPPED 2026-05-23
+
+**Phases:** 9 | **Plans:** 3 | **Commits:** 18
+**Timeline:** 2026-05-23 → 2026-05-23 (1 day)
+
+### Delivered
+
+Download buttons in the gallery (hover overlay on cards and yarl toolbar button in lightbox) and four Hebrew top-bar links to the original source albums. Downloads proxy through a Cloudflare Worker `/api/download` route to bypass R2's cross-origin CORS restriction on the `download` attribute.
+
+### Key Accomplishments
+
+1. **Lightbox download:** yarl Download plugin with per-slide `download: { url, filename }` metadata and Hebrew toolbar label "הורדה"
+2. **Gallery card download:** Hover-visible `<a download>` anchor at `bottom-0 end-0` (RTL-safe logical CSS); `stopPropagation` prevents lightbox open
+3. **TopBar album links:** 4 Hebrew buttons (אביר סולטן, ענבל זלדין, מגנטים, פילם) above the Filters bar; open in new tab
+4. **Worker download proxy:** `/api/download` Worker route fetches from R2 server-side, returns `Content-Disposition: attachment` — bypasses cross-origin download restriction
+5. **Config-driven URLs:** `ALBUM_LINKS` export in `site/src/config.js` — update album URLs without touching component code
+
+### Archive
+
+- Full roadmap: `.planning/milestones/v1.2-ROADMAP.md`
+- Requirements: `.planning/milestones/v1.2-REQUIREMENTS.md`
+
+### Known Deferred Items
+
+- Face recognition: FACE-01..04 still in v2 scope (schema is forward-compatible)

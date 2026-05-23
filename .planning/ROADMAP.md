@@ -4,7 +4,7 @@
 
 - ✅ **v1.0 MVP** — Phases 1–5 (shipped 2026-05-17)
 - ✅ **v1.1 Security & Hardening** — Phases 6–8 (shipped 2026-05-18)
-- **v1.2 Downloads & Album Links** — Phase 9 (current)
+- ✅ **v1.2 Downloads & Album Links** — Phase 9 (shipped 2026-05-23)
 
 ## Phases
 
@@ -32,27 +32,14 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 
 </details>
 
-### v1.2 Downloads & Album Links
+<details>
+<summary>✅ v1.2 Downloads & Album Links (Phase 9) — SHIPPED 2026-05-23</summary>
 
-- [x] **Phase 9: Downloads & Album Links** - Guests can download photos and jump to source albums from the gallery (completed 2026-05-23)
+- [x] Phase 9: Downloads & Album Links (3/3 plans) — completed 2026-05-23
 
-## Phase Details
+Full archive: `.planning/milestones/v1.2-ROADMAP.md`
 
-### Phase 9: Downloads & Album Links
-**Goal**: Guests can download individual photos directly from the gallery and access the original source albums in one click
-**Depends on**: Phase 8 (live site with photos on R2)
-**Requirements**: DWNL-01, DWNL-02, LINK-01, LINK-02, CONF-01
-**Success Criteria** (what must be TRUE):
-  1. Guest clicks a download button in the lightbox and receives the currently viewed photo as a file download
-  2. Guest hovers over a gallery card and sees a download icon; clicking it downloads that photo
-  3. Top bar displays 4 album link buttons (3 Google Photos + 1 pic-time) on the left side
-  4. Clicking any album link opens the source album in a new browser tab
-  5. Album URLs can be updated by editing `site/src/config.js` without touching any component file
-**Plans**: 3 plans
-  - [x] 09-01-PLAN.md — Add ALBUM_LINKS to config.js + TopBar component (CONF-01, LINK-01, LINK-02)
-  - [x] 09-02-PLAN.md — PhotoCard hover-visible download icon (DWNL-02)
-  - [x] 09-03-PLAN.md — Lightbox yarl Download plugin + per-slide download metadata (DWNL-01)
-**UI hint**: yes
+</details>
 
 ## Progress
 
@@ -66,4 +53,4 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 | 6. Pipeline Code Changes | v1.1 | 2/2 | Complete | 2026-05-17 |
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
-| 9. Downloads & Album Links | v1.2 | 3/3 | Complete   | 2026-05-23 |
+| 9. Downloads & Album Links | v1.2 | 3/3 | Complete | 2026-05-23 |

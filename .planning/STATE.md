@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: Downloads & Album Links
-status: complete
+status: archived
 last_updated: "2026-05-23T20:00:00.000Z"
-last_activity: 2026-05-23 -- v1.2 shipped and verified live; post-deploy fixes applied
+last_activity: 2026-05-23 -- v1.2 milestone archived; ready for next milestone
 progress:
   total_phases: 1
   completed_phases: 1
@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-18)
 
 **Core value:** Every guest can find and view every photo from the wedding, filtered by who shot it and when it happened — with zero hosting costs and no maintenance burden.
-**Current focus:** v1.2 complete — ready for milestone close
+**Current focus:** v1.2 archived — planning next milestone
 
 ## Current Position
 

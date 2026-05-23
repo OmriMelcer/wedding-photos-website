@@ -102,13 +102,59 @@
 
 ---
 
+## Milestone: v1.2 — Downloads & Album Links
+
+**Shipped:** 2026-05-23
+**Phases:** 1 | **Plans:** 3 | **Timeline:** 1 day
+
+### What Was Built
+
+1. `site/src/config.js` — `ALBUM_LINKS` export: 4 Hebrew labels + real album URLs
+2. `site/src/components/TopBar.jsx` — nav landmark with 4 Button asChild anchor elements; renders above Filters
+3. `site/src/components/PhotoCard.jsx` — hover `<a download>` anchor at `bottom-0 end-0` (RTL-safe logical CSS)
+4. `site/src/components/Lightbox.jsx` — yarl Download plugin, per-slide `download: { url, filename }`, Hebrew label "הורדה"
+5. `site/worker.js` — `/api/download` Worker route: fetches R2 URL server-side, returns `Content-Disposition: attachment`
+
+### What Worked
+
+- **Config-driven album URLs (CONF-01)** — when a URL needed a fix, zero component changes required; single edit in `config.js`
+- **Worker download proxy pattern** — cleanly solved the CORS restriction with a minimal 32-line Worker route; no npm dependency
+- **Logical CSS for RTL** — `start-0`/`end-0` for card overlay positioning; no `left-`/`right-` classes; RTL contract enforced by tests
+- **yarl plugin API** — `plugins` prop array is clean; `download: { url, filename }` object form avoids deprecated string properties
+
+### What Was Inefficient
+
+- **Initial `<a download>` placement** — the cross-origin restriction was discovered at testing, not at design; a note in the plan would have saved one fix commit
+- **Placeholder URLs in initial plan** — CONF-01 was correctly deferred to a config-swap, but the initial placeholder `'#'` required a follow-up commit to set real URLs; could have been done in the same plan as the config structure
+
+### Patterns Established
+
+- **Worker `/api/download` proxy** — Worker fetches R2 server-side, sets `Content-Disposition: attachment`, streams back — solves cross-origin `download` attribute restriction for any future download need
+- **`ALBUM_LINKS` named export in config.js** — array of `{ label, url }` objects; imported by TopBar only; future album updates require one file edit
+- **Button asChild + anchor pattern** — `<Button asChild><a href target="_blank" rel="noopener noreferrer">...</a></Button>` for styled external links in shadcn
+
+### Key Lessons
+
+- **Cross-origin download restriction is a known browser gotcha** — `download` attribute is ignored for cross-origin `href`; always proxy through same-origin endpoint when offering downloads from external storage
+- **`alt=""` on decorative images yields role=presentation** — `screen.getByRole('img')` fails; use `container.querySelector('img')` in tests; this is correct accessibility, not a bug
+- **Test the full suite after each plan** — 3 plans, each adding tests; running the suite at each merge caught no regressions (42 tests, all green)
+
+### Cost Observations
+
+- Model mix: Sonnet 4.6
+- Sessions: 1 day for 3 plans
+- Notable: fastest milestone to date — 3 plans, 5 tasks, 1 day; all pure frontend + minimal Worker work
+
+---
+
 ## Cross-Milestone Trends
 
-| Metric | v1.0 | v1.1 |
-|--------|------|------|
-| Timeline | 2 days | 2 days |
-| Phases | 5 | 3 |
-| Plans | 16 | 4 |
-| Files changed | — | 15 |
-| Requirements shipped | 27/27 | 6/6 |
-| Test coverage | — | 17 pipeline tests (all pass) |
+| Metric | v1.0 | v1.1 | v1.2 |
+|--------|------|------|------|
+| Timeline | 2 days | 2 days | 1 day |
+| Phases | 5 | 3 | 1 |
+| Plans | 16 | 4 | 3 |
+| Files changed | — | 15 | 22 |
+| Requirements shipped | 27/27 | 6/6 | 5/5 |
+| Test coverage | — | 17 pipeline tests | 42 site tests (all pass) |
+| Notable issue | Orphaned branch | REQUIREMENTS.md tracking | Cross-origin download restriction |

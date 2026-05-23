@@ -36,15 +36,12 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - ✓ Cache-Control headers on all R2 objects: `max-age=86400` (metadata.json), `max-age=31536000, immutable` (photos/thumbs) — v1.1
 - ✓ Cloudflare billing alerts at $5/month for R2 operations and Workers requests — v1.1
 - ✓ All 1309 photos regenerated with EXIF stripped and re-uploaded with correct headers; live R2 verification passed — v1.1
+- ✓ Guests can download individual photos from lightbox (yarl Download plugin, Worker proxy for CORS) — v1.2
+- ✓ Guests can download photos via hover icon on gallery cards — v1.2
+- ✓ Top bar displays 4 Hebrew album link buttons linking to original source albums — v1.2
+- ✓ Album URLs stored in `site/src/config.js` — updatable without touching components — v1.2
 
-### Active (v1.2)
-
-- [ ] User can download a single photo from the lightbox (DWNL-01)
-- [ ] User can download a photo via icon on gallery card hover (DWNL-02)
-- [ ] Top bar displays 4 buttons linking to original source albums (LINK-01)
-- [ ] Album links open in a new tab (LINK-02)
-
-### Deferred (v2)
+### Active (v2)
 
 - [ ] Face recognition pipeline: detect faces, cluster into person identities (FACE-01)
 - [ ] User labels face clusters with names (FACE-02)
@@ -72,6 +69,7 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - **Codebase:** ~2,750 LOC. Python 3.13 pipeline (uv). React 19 + Vite + Tailwind v4 + shadcn nova. Workers Static Assets deploy via wrangler.
 - **metadata.json:** 398 KB (1309 photos). Well under 1 MB constraint. Served from `https://pub-db0e5eba70a74d8cbe49b014f6329b9e.r2.dev`.
 - **Security posture (v1.1):** All photos stripped of EXIF before upload. Cache-Control headers set on all R2 objects. Cloudflare billing alerts active. WAF rate-limiting descoped (see Out of Scope).
+- **v1.2 additions:** Download proxy via Worker `/api/download` (Content-Disposition: attachment). TopBar with 4 Hebrew album links. Album URLs in `site/src/config.js`. All 42 tests passing.
 
 ## Constraints
 
@@ -100,6 +98,9 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 | `exif=b""` kwarg on Pillow `.save()` | Explicit EXIF strip at output; orientation correction runs before via `exif_transpose` | ✓ Good — 6 tests pass; backward-compatible across Pillow versions |
 | Cache-Control as S3 `ExtraArgs` (`CacheControl` key) | No post-upload metadata patch; headers set atomically at upload time | ✓ Good — verified live on R2 via `curl -I` |
 | Descope CF-03 WAF rate limiting | Workers.dev free tier can't use WAF rules; Workers Paid costs $5/month — not justified for a 100-guest site | ✓ Good — Cloudflare DDoS protection covers large floods for free |
+| Worker `/api/download` proxy for downloads | Browser `download` attribute silently ignored for cross-origin URLs; Worker adds `Content-Disposition: attachment` | ✓ Good — downloads work from lightbox and gallery cards |
+| yarl `download: { url, filename }` object form | Modern API; `downloadUrl`/`downloadFilename` string props are deprecated in yarl v3+ | ✓ Good — TypeScript types confirm; 3 tests pass |
+| `ALBUM_LINKS` export in `site/src/config.js` | URLs change; components should not know about specific albums | ✓ Good — URL fix required zero component changes |
 
 ## Evolution
 
@@ -111,14 +112,5 @@ This document evolves at phase transitions and milestone boundaries.
 3. Audit Out of Scope — reasons still valid?
 4. Update Context with current state
 
-## Current Milestone: v1.2 Downloads & Album Links
-
-**Goal:** Let guests download individual photos and jump to the original full-resolution source albums in one click.
-
-**Target features:**
-- Download button in the lightbox (current photo, web-compressed from R2)
-- Download icon on gallery card hover
-- 4 static top-bar buttons linking to the 3 Google Photos albums + 1 pic-time gallery
-
 ---
-*Last updated: 2026-05-18 after v1.2 milestone start*
+*Last updated: 2026-05-23 after v1.2 milestone*
