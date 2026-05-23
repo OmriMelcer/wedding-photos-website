@@ -8,9 +8,9 @@
 
 ### Zoom
 
-- [ ] **ZOOM-01**: Guest can pinch-to-zoom on lightbox images on mobile (two-finger spread to zoom in, pinch to zoom out)
-- [ ] **ZOOM-02**: Guest can use scroll-wheel to zoom in and out on lightbox images on desktop
-- [ ] **ZOOM-03**: Guest can drag to pan a zoomed-in lightbox image on any device
+- [x] **ZOOM-01**: Guest can pinch-to-zoom on lightbox images on mobile (two-finger spread to zoom in, pinch to zoom out)
+- [x] **ZOOM-02**: Guest can use scroll-wheel to zoom in and out on lightbox images on desktop
+- [x] **ZOOM-03**: Guest can drag to pan a zoomed-in lightbox image on any device
 
 ## Out of Scope
 
@@ -25,9 +25,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ZOOM-01 | Phase 10 | Pending |
-| ZOOM-02 | Phase 10 | Pending |
-| ZOOM-03 | Phase 10 | Pending |
+| ZOOM-01 | Phase 10 | Complete |
+| ZOOM-02 | Phase 10 | Complete |
+| ZOOM-03 | Phase 10 | Complete |
 
 **Coverage:**
 - v1.3 requirements: 3 total

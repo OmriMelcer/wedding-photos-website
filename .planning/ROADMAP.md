@@ -74,4 +74,4 @@ Full archive: `.planning/milestones/v1.2-ROADMAP.md`
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
 | 9. Downloads & Album Links | v1.2 | 3/3 | Complete | 2026-05-23 |
-| 10. Zoom & Pan | v1.3 | 0/? | Not started | - |
+| 10. Zoom & Pan | v1.3 | 1/2 | In Progress|  |
