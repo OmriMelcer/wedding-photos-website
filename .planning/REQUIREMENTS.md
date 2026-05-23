@@ -9,16 +9,16 @@
 ### Download
 
 - [ ] **DWNL-01**: User can download the currently viewed photo from the lightbox (fetches R2 URL, triggers browser download with original filename)
-- [ ] **DWNL-02**: User can download a photo from the gallery grid via a download icon that appears on hover
+- [x] **DWNL-02**: User can download a photo from the gallery grid via a download icon that appears on hover
 
 ### Album Links
 
-- [ ] **LINK-01**: Top bar displays 4 buttons/links to the original source albums (3 Google Photos + 1 pic-time), placed on the left side of the top bar
-- [ ] **LINK-02**: Each album link opens in a new tab
+- [x] **LINK-01**: Top bar displays 4 buttons/links to the original source albums (3 Google Photos + 1 pic-time), placed on the left side of the top bar
+- [x] **LINK-02**: Each album link opens in a new tab
 
 ### Configuration
 
-- [ ] **CONF-01**: Album URLs are stored in `site/src/config.js` (not hardcoded in components) so they can be updated without touching component code
+- [x] **CONF-01**: Album URLs are stored in `site/src/config.js` (not hardcoded in components) so they can be updated without touching component code
 
 ## Future Requirements
 
@@ -43,10 +43,10 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | DWNL-01 | Phase 9 | Pending |
-| DWNL-02 | Phase 9 | Pending |
-| LINK-01 | Phase 9 | Pending |
-| LINK-02 | Phase 9 | Pending |
-| CONF-01 | Phase 9 | Pending |
+| DWNL-02 | Phase 9 | Complete |
+| LINK-01 | Phase 9 | Complete |
+| LINK-02 | Phase 9 | Complete |
+| CONF-01 | Phase 9 | Complete |
 
 **Coverage:**
 - v1.2 requirements: 5 total
