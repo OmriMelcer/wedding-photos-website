@@ -29,7 +29,7 @@ export default function PhotoCard({ photo, onClick }) {
       <button
         aria-label="הורד תמונה"
         onClick={(e) => { e.stopPropagation(); downloadFile(photo.r2_url, photo.filename); }}
-        className="absolute bottom-0 end-0 m-1.5 p-1.5 rounded bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus-visible:opacity-100"
+        className="absolute bottom-0 end-0 m-1.5 p-1.5 rounded bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus-visible:opacity-100 cursor-pointer"
       >
         <Download className="size-4" aria-hidden="true" />
       </button>
