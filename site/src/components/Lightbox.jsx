@@ -7,6 +7,7 @@
 import YarlLightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import Download from 'yet-another-react-lightbox/plugins/download';
+import { downloadFile } from '@/utils/download';
 
 export default function LightboxWrapper({ open, index, slides, onClose }) {
   const yarlSlides = slides.map(photo => ({
@@ -24,6 +25,7 @@ export default function LightboxWrapper({ open, index, slides, onClose }) {
       portal={{ container: { dir: 'rtl' } }}
       plugins={[Download]}
       labels={{ Download: 'הורדה' }}
+      download={{ download: ({ slide }) => downloadFile(slide.download.url, slide.download.filename) }}
     />
   );
 }

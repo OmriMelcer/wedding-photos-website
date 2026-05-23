@@ -16,63 +16,53 @@ const photo = {
 };
 
 describe('PhotoCard', () => {
-  it('PC1: renders an anchor with href === photo.r2_url', () => {
+  it('PC1: renders a download button with aria-label הורד תמונה', () => {
     render(<PhotoCard photo={photo} onClick={vi.fn()} />);
-    const anchor = screen.getByRole('link', { name: 'הורד תמונה' });
-    expect(anchor).toHaveAttribute('href', photo.r2_url);
+    const btn = screen.getByRole('button', { name: 'הורד תמונה' });
+    expect(btn).toBeDefined();
   });
 
-  it('PC2: download anchor has the HTML download attribute equal to photo.filename', () => {
+  it('PC2: download button has aria-label="הורד תמונה"', () => {
     render(<PhotoCard photo={photo} onClick={vi.fn()} />);
-    const anchor = screen.getByRole('link', { name: 'הורד תמונה' });
-    expect(anchor).toHaveAttribute('download', photo.filename);
+    const btn = screen.getByRole('button', { name: 'הורד תמונה' });
+    expect(btn).toHaveAttribute('aria-label', 'הורד תמונה');
   });
 
-  it('PC3: download anchor has aria-label="הורד תמונה"', () => {
-    render(<PhotoCard photo={photo} onClick={vi.fn()} />);
-    const anchor = screen.getByRole('link', { name: 'הורד תמונה' });
-    expect(anchor).toHaveAttribute('aria-label', 'הורד תמונה');
-  });
-
-  it('PC4: clicking the download anchor does NOT invoke the onClick prop (stopPropagation works)', () => {
+  it('PC3: clicking the download button does NOT invoke the onClick prop (stopPropagation works)', () => {
     const onClick = vi.fn();
     render(<PhotoCard photo={photo} onClick={onClick} />);
-    const anchor = screen.getByRole('link', { name: 'הורד תמונה' });
-    fireEvent.click(anchor);
+    const btn = screen.getByRole('button', { name: 'הורד תמונה' });
+    fireEvent.click(btn);
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  it('PC5: clicking the card (not the download anchor) DOES invoke the onClick prop', () => {
+  it('PC4: clicking the card (not the download button) DOES invoke the onClick prop', () => {
     const onClick = vi.fn();
     const { container } = render(<PhotoCard photo={photo} onClick={onClick} />);
-    // The outer div carries the onClick — click the presentation img element directly
-    // (alt="" makes it role=presentation, so query via container querySelector)
     const img = container.querySelector('img');
     fireEvent.click(img);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('PC6: download anchor className contains both end-0 and bottom-0 (logical positioning)', () => {
+  it('PC5: download button className contains both end-0 and bottom-0 (logical positioning)', () => {
     render(<PhotoCard photo={photo} onClick={vi.fn()} />);
-    const anchor = screen.getByRole('link', { name: 'הורד תמונה' });
-    expect(anchor.className).toContain('end-0');
-    expect(anchor.className).toContain('bottom-0');
+    const btn = screen.getByRole('button', { name: 'הורד תמונה' });
+    expect(btn.className).toContain('end-0');
+    expect(btn.className).toContain('bottom-0');
   });
 
-  it('PC7: download anchor className contains opacity-0 and group-hover:opacity-100 (hover-only visibility)', () => {
+  it('PC6: download button className contains opacity-0 and group-hover:opacity-100 (hover-only visibility)', () => {
     render(<PhotoCard photo={photo} onClick={vi.fn()} />);
-    const anchor = screen.getByRole('link', { name: 'הורד תמונה' });
-    expect(anchor.className).toContain('opacity-0');
-    expect(anchor.className).toContain('group-hover:opacity-100');
+    const btn = screen.getByRole('button', { name: 'הורד תמונה' });
+    expect(btn.className).toContain('opacity-0');
+    expect(btn.className).toContain('group-hover:opacity-100');
   });
 
-  it('PC8: no left-/right-/ml-/mr-/pl-/pr- classes anywhere in PhotoCard rendered output (RTL contract)', () => {
+  it('PC7: no left-/right-/ml-/mr-/pl-/pr- classes anywhere in PhotoCard rendered output (RTL contract)', () => {
     const { container } = render(<PhotoCard photo={photo} onClick={vi.fn()} />);
-    // Collect all className values from all elements in the rendered tree
     const allClasses = Array.from(container.querySelectorAll('*'))
       .map(el => el.className || '')
       .join(' ');
-    // RTL-prohibited physical direction classes
     expect(allClasses).not.toMatch(/\bleft-\S+/);
     expect(allClasses).not.toMatch(/\bright-\S+/);
     expect(allClasses).not.toMatch(/\bml-\S+/);

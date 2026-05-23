@@ -4,6 +4,7 @@
 // In RTL document (dir="rtl"), `start` resolves to right and `end` resolves to left.
 import { Download } from 'lucide-react';
 import { PHOTOGRAPHER_NAMES } from '@/config';
+import { downloadFile } from '@/utils/download';
 
 export default function PhotoCard({ photo, onClick }) {
   return (
@@ -25,15 +26,13 @@ export default function PhotoCard({ photo, onClick }) {
       </div>
       {/* Download anchor — hover only, visual bottom-left corner in RTL (end-0).
           stopPropagation prevents the outer div onClick (lightbox open) from firing. */}
-      <a
-        href={photo.r2_url}
-        download={photo.filename}
+      <button
         aria-label="הורד תמונה"
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => { e.stopPropagation(); downloadFile(photo.r2_url, photo.filename); }}
         className="absolute bottom-0 end-0 m-1.5 p-1.5 rounded bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus-visible:opacity-100"
       >
         <Download className="size-4" aria-hidden="true" />
-      </a>
+      </button>
     </div>
   );
 }
