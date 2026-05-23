@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.2
-milestone_name: Downloads & Album Links
-status: archived
-last_updated: "2026-05-23T20:00:00.000Z"
-last_activity: 2026-05-23 -- v1.2 milestone archived; ready for next milestone
+milestone: v1.3
+milestone_name: Lightbox Zoom
+status: planning
+last_updated: "2026-05-23T17:02:40.779Z"
+last_activity: 2026-05-23
 progress:
-  total_phases: 1
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -24,12 +24,10 @@ See: .planning/PROJECT.md (updated 2026-05-18)
 
 ## Current Position
 
-Phase: 9 (Downloads & Album Links)
-Plan: — (all complete)
-Status: Shipped ✓
-Last activity: 2026-05-23 -- v1.2 live at wedding-album.omelcer.workers.dev
-
-Progress: [██████████] 100%
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-05-23 — Milestone v1.3 started
 
 ## Accumulated Context
 

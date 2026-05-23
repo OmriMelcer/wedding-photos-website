@@ -4,6 +4,15 @@
 
 A static wedding photo album website for 1327 photos from 3 photographers, built from an offline Python pipeline and served as a fully static React app. An automated pipeline acquires photos from Google Photos and pic-time, computes CLIP embeddings to assign film scans to event clusters, resizes all images, and uploads them to Cloudflare R2. Guests browse and filter by photographer and wedding phase in a Hebrew RTL masonry gallery. The site is live at https://wedding-album.omelcer.workers.dev.
 
+## Current Milestone: v1.3 Lightbox Zoom
+
+**Goal:** Guests can zoom in on individual photos in the lightbox — pinch-to-zoom on mobile and scroll-wheel + drag to pan on desktop.
+
+**Target features:**
+- Pinch-to-zoom in lightbox on mobile (two-finger spread/pinch)
+- Scroll-wheel zoom in lightbox on desktop
+- Drag to pan while zoomed in
+
 ## Core Value
 
 Every guest can find and view every photo from the wedding, filtered by who shot it and when it happened — with zero hosting costs and no maintenance burden.
@@ -41,7 +50,13 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - ✓ Top bar displays 4 Hebrew album link buttons linking to original source albums — v1.2
 - ✓ Album URLs stored in `site/src/config.js` — updatable without touching components — v1.2
 
-### Active (v2)
+### Active (v1.3)
+
+- [ ] Guests can pinch-to-zoom on lightbox images on mobile (ZOOM-01)
+- [ ] Guests can scroll-wheel to zoom in/out on lightbox images on desktop (ZOOM-02)
+- [ ] Guests can drag to pan a zoomed-in lightbox image (ZOOM-03)
+
+### Planned (v2)
 
 - [ ] Face recognition pipeline: detect faces, cluster into person identities (FACE-01)
 - [ ] User labels face clusters with names (FACE-02)
@@ -113,4 +128,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-23 after v1.2 milestone*
+*Last updated: 2026-05-23 after v1.3 milestone start*
