@@ -10,10 +10,12 @@
 
 - [x] **DWNL-01**: User can download the currently viewed photo from the lightbox (fetches R2 URL, triggers browser download with original filename)
 - [x] **DWNL-02**: User can download a photo from the gallery grid via a download icon that appears on hover
+  - *Implementation note:* Browser `download` attribute is silently ignored for cross-origin URLs. Downloads are proxied through `/api/download` (Worker route) which fetches from R2 server-side and returns `Content-Disposition: attachment`.
 
 ### Album Links
 
-- [x] **LINK-01**: Top bar displays 4 buttons/links to the original source albums (3 Google Photos + 1 pic-time), placed on the left side of the top bar
+- [x] **LINK-01**: Top bar displays 4 buttons/links to the original source albums (3 Google Photos + 1 Pic-Time), placed on the left side of the top bar
+  - *Labels (Hebrew):* אביר סולטן, ענבל זלדין, מגנטים, פילם
 - [x] **LINK-02**: Each album link opens in a new tab
 
 ### Configuration
@@ -55,4 +57,4 @@
 
 ---
 *Requirements defined: 2026-05-18*
-*Last updated: 2026-05-18 after roadmap creation (Phase 9 assigned)*
+*Last updated: 2026-05-23 — v1.2 shipped; download proxy and album URL notes added*
