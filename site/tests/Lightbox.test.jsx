@@ -16,6 +16,9 @@ vi.mock('yet-another-react-lightbox', () => {
 // Mock the Download plugin (DWNL-01)
 vi.mock('yet-another-react-lightbox/plugins/download', () => ({ default: 'DownloadPluginMock' }));
 
+// Mock the Zoom plugin (ZOOM-01/02/03)
+vi.mock('yet-another-react-lightbox/plugins/zoom', () => ({ default: 'ZoomPluginMock' }));
+
 // Imports after mocks
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
@@ -200,5 +203,35 @@ describe('Lightbox (DWNL-01)', () => {
     const lastCall = yarlMock.mock.calls[yarlMock.mock.calls.length - 1];
     expect(lastCall[0].labels).toBeDefined();
     expect(lastCall[0].labels.Download).toBe('הורדה');
+  });
+});
+
+describe('Lightbox (ZOOM-01/02/03)', () => {
+  beforeEach(() => {
+    yarlMock.mockClear();
+  });
+
+  it('Z1/Z2/Z3 (ZOOM-01/02/03 plugin registration and config): Zoom plugin is registered before Download with correct zoom config', () => {
+    render(<TestHarness photos={FIVE_PHOTOS} />);
+    fireEvent.click(screen.getByTestId('photo-a1'));
+
+    const lastCall = yarlMock.mock.calls[yarlMock.mock.calls.length - 1];
+
+    // Z1: plugins array contains ZoomPluginMock
+    expect(Array.isArray(lastCall[0].plugins)).toBe(true);
+    expect(lastCall[0].plugins).toContain('ZoomPluginMock');
+
+    // Z2: ZoomPluginMock appears before DownloadPluginMock (RTL toolbar order)
+    const zoomIndex = lastCall[0].plugins.indexOf('ZoomPluginMock');
+    const downloadIndex = lastCall[0].plugins.indexOf('DownloadPluginMock');
+    expect(zoomIndex).toBeLessThan(downloadIndex);
+
+    // Z3: zoom prop equals the full required config object
+    expect(lastCall[0].zoom).toEqual({
+      scrollToZoom: true,
+      maxZoomPixelRatio: 3,
+      pinchZoomV4: true,
+      doubleClickMaxStops: 2,
+    });
   });
 });
