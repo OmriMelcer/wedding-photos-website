@@ -24,7 +24,7 @@ export const ALBUM_LINKS = [
   { label: 'אביר סולטן', url: 'https://photos.app.goo.gl/y5DtXuuTygEUo6DN7' },
   { label: 'ענבל זלדין', url: 'https://photos.app.goo.gl/DxwFxEfcAb3SHe519' },
   { label: 'מגנטים', url: 'https://justsmile.pic-time.com/client/noa--omri/gallery' },
-  { label: 'פילם', url: 'https://photos.app.goo.gl/DxwFxEfcAb3SHe519' },
+  { label: 'פילם', url: 'https://photos.app.goo.gl/uRcbZJUYL21EsYfW6' },
 ];
 
 // Override with VITE_METADATA_URL for production (R2 URL)
