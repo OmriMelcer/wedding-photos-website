@@ -5,7 +5,7 @@
 - ✅ **v1.0 MVP** — Phases 1–5 (shipped 2026-05-17)
 - ✅ **v1.1 Security & Hardening** — Phases 6–8 (shipped 2026-05-18)
 - ✅ **v1.2 Downloads & Album Links** — Phase 9 (shipped 2026-05-23)
-- **v1.3 Lightbox Zoom** — Phase 10 (in progress)
+- ✅ **v1.3 Lightbox Zoom** — Phase 10 (shipped 2026-05-23)
 
 ## Phases
 
@@ -74,4 +74,4 @@ Full archive: `.planning/milestones/v1.2-ROADMAP.md`
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
 | 9. Downloads & Album Links | v1.2 | 3/3 | Complete | 2026-05-23 |
-| 10. Zoom & Pan | v1.3 | 1/2 | In Progress|  |
+| 10. Zoom & Pan | v1.3 | 2/2 | Complete | 2026-05-23 |
