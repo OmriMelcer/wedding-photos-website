@@ -147,14 +147,58 @@
 
 ---
 
+## Milestone: v1.3 — Lightbox Zoom
+
+**Shipped:** 2026-05-23
+**Phases:** 1 | **Plans:** 2 | **Timeline:** ~23 minutes (single session)
+
+### What Was Built
+
+1. yarl Zoom plugin wired into `LightboxWrapper` via sub-path import (`yet-another-react-lightbox/plugins/zoom`)
+2. `plugins={[Zoom, Download]}` — Zoom before Download for correct RTL toolbar order
+3. `zoom={{ scrollToZoom: true, maxZoomPixelRatio: 3, pinchZoomV4: true, doubleClickMaxStops: 2 }}`
+4. TDD: RED assertions in `Lightbox.test.jsx`, then GREEN implementation; full 53-test suite green
+5. Smoke-tested on desktop + DevTools mobile simulation: all ZOOM-01/02/03 behaviors confirmed
+
+### What Worked
+
+- **Zero dependency approach** — Zoom plugin ships inside `yet-another-react-lightbox@^3.32.0`; no new package added; discovery driven by pre-planning research
+- **Research-driven pre-decisions** — `maxZoomPixelRatio: 3` and `pinchZoomV4: true` were identified and reasoned about before the plan was written; implementation was a 3-minute mechanical step
+- **TDD for plugin configuration** — testing `zoom` prop deep-equality and plugin ordering proved the config was correct before smoke testing; no surprise failures
+- **Smallest-possible scope** — 2 files changed, zero new dependencies, delivered all 3 ZOOM requirements; no scope creep
+
+### What Was Inefficient
+
+- None significant — this was the fastest milestone to date; research and pre-planning eliminated all surprises
+
+### Patterns Established
+
+- **yarl sub-path plugin imports** — `import Zoom from 'yet-another-react-lightbox/plugins/zoom'` — always check the installed package for bundled plugins before adding new dependencies
+- **`maxZoomPixelRatio` mandatory pattern** — any yarl Zoom integration must set this to ≥2 (prefer 3); default of 1 silently disables zoom on retina/mobile
+- **`pinchZoomV4: true` mandatory pattern** — prevents iOS swipe-block after pinch-out; always include in mobile zoom integration
+
+### Key Lessons
+
+- **Pre-planning research pays off in trivial implementations** — the research phase identified all mandatory config values and their rationale; the plan execution was deterministic and fast
+- **Plugin ordering in yarl `plugins` array matters for RTL** — Zoom before Download places zoom controls on the outer end of the RTL toolbar; test the visual order explicitly
+- **Mock sub-path imports in Vitest** — `vi.mock('yet-another-react-lightbox/plugins/zoom', () => ({ default: 'ZoomPluginMock' }))` is the correct pattern for testing plugin list membership without loading the real plugin
+
+### Cost Observations
+
+- Model mix: Sonnet 4.6
+- Sessions: 1 session (~23 minutes total for both plans)
+- Notable: most efficient milestone to date — research phase fully eliminated implementation uncertainty
+
+---
+
 ## Cross-Milestone Trends
 
-| Metric | v1.0 | v1.1 | v1.2 |
-|--------|------|------|------|
-| Timeline | 2 days | 2 days | 1 day |
-| Phases | 5 | 3 | 1 |
-| Plans | 16 | 4 | 3 |
-| Files changed | — | 15 | 22 |
-| Requirements shipped | 27/27 | 6/6 | 5/5 |
-| Test coverage | — | 17 pipeline tests | 42 site tests (all pass) |
-| Notable issue | Orphaned branch | REQUIREMENTS.md tracking | Cross-origin download restriction |
+| Metric | v1.0 | v1.1 | v1.2 | v1.3 |
+|--------|------|------|------|------|
+| Timeline | 2 days | 2 days | 1 day | ~23 min |
+| Phases | 5 | 3 | 1 | 1 |
+| Plans | 16 | 4 | 3 | 2 |
+| Files changed | — | 15 | 22 | 2 |
+| Requirements shipped | 27/27 | 6/6 | 5/5 | 3/3 |
+| Test coverage | — | 17 pipeline tests | 42 site tests (all pass) | 53 site tests (all pass) |
+| Notable issue | Orphaned branch | REQUIREMENTS.md tracking | Cross-origin download restriction | None |

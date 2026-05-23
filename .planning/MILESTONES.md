@@ -85,3 +85,32 @@ Download buttons in the gallery (hover overlay on cards and yarl toolbar button 
 ### Known Deferred Items
 
 - Face recognition: FACE-01..04 still in v2 scope (schema is forward-compatible)
+
+---
+
+## v1.3 Lightbox Zoom — ✅ SHIPPED 2026-05-23
+
+**Phases:** 10 | **Plans:** 2 | **Commits:** 5
+**Timeline:** 2026-05-23 (single session, ~23 minutes)
+
+### Delivered
+
+Pinch-to-zoom (mobile), scroll-wheel zoom (desktop), and drag-to-pan in the lightbox — wired via the yarl Zoom plugin already bundled inside the installed `yet-another-react-lightbox@^3.32.0`. Zero new npm dependencies. All three ZOOM requirements verified by manual smoke test.
+
+### Key Accomplishments
+
+1. **yarl Zoom plugin wired:** `plugins={[Zoom, Download]}` with `maxZoomPixelRatio: 3` (mandatory for retina/mobile) and `pinchZoomV4: true` (prevents iOS swipe-block after fast pinch-out)
+2. **ZOOM-01:** Pinch-to-zoom in lightbox on mobile — two-finger spread to zoom in, pinch to zoom out
+3. **ZOOM-02:** Scroll-wheel zoom in lightbox on desktop — `scrollToZoom: true`, safe for modal (no page-scroll bleed)
+4. **ZOOM-03:** Drag-to-pan while zoomed in on any device — built into yarl Zoom plugin
+5. **TDD maintained:** RED assertions added first; GREEN implementation; full suite 53/53 passing; production build clean (277.55 kB JS)
+
+### Archive
+
+- Full roadmap: `.planning/milestones/v1.3-ROADMAP.md`
+- Requirements: `.planning/milestones/v1.3-REQUIREMENTS.md`
+
+### Known Deferred Items
+
+- Hebrew zoom toolbar labels ("הגדל"/"הקטן") — not requested for v1.3; deferred to future
+- 12 pre-existing ESLint errors in unrelated files — not introduced by v1.3; deferred to maintenance

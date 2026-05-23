@@ -42,24 +42,14 @@ Full archive: `.planning/milestones/v1.2-ROADMAP.md`
 
 </details>
 
-### v1.3 Lightbox Zoom
+<details>
+<summary>✅ v1.3 Lightbox Zoom (Phase 10) — SHIPPED 2026-05-23</summary>
 
-- [ ] **Phase 10: Zoom & Pan** - Add pinch-to-zoom, scroll-wheel zoom, and drag-to-pan to the lightbox
+- [x] Phase 10: Zoom & Pan (2/2 plans) — completed 2026-05-23
 
-## Phase Details
+Full archive: `.planning/milestones/v1.3-ROADMAP.md`
 
-### Phase 10: Zoom & Pan
-**Goal**: Guests can zoom in on any lightbox photo and pan around the zoomed image, on both mobile and desktop
-**Depends on**: Phase 9 (lightbox with Download plugin already wired)
-**Requirements**: ZOOM-01, ZOOM-02, ZOOM-03
-**Success Criteria** (what must be TRUE):
-  1. Guest on iPhone can spread two fingers to zoom in on a lightbox photo and pinch to zoom back out
-  2. Guest on desktop can scroll the mouse wheel over a lightbox photo to zoom in and out
-  3. Guest can drag a zoomed-in lightbox photo to pan and reveal different parts of the image
-  4. After a fast pinch-out on iPhone, the guest can immediately swipe to the next photo (no swipe-block)
-  5. Zoom controls (zoom in / zoom out buttons) display Hebrew tooltips ("הגדל" / "הקטן") matching the existing Hebrew UI
-**Plans**: TBD
-**UI hint**: yes
+</details>
 
 ## Progress
 
@@ -74,4 +64,4 @@ Full archive: `.planning/milestones/v1.2-ROADMAP.md`
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
 | 9. Downloads & Album Links | v1.2 | 3/3 | Complete | 2026-05-23 |
-| 10. Zoom & Pan | v1.3 | 2/2 | Complete | 2026-05-23 |
+| 10. Zoom & Pan | v1.3 | 2/2 | ✅ Complete | 2026-05-23 |

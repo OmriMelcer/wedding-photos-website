@@ -4,15 +4,6 @@
 
 A static wedding photo album website for 1327 photos from 3 photographers, built from an offline Python pipeline and served as a fully static React app. An automated pipeline acquires photos from Google Photos and pic-time, computes CLIP embeddings to assign film scans to event clusters, resizes all images, and uploads them to Cloudflare R2. Guests browse and filter by photographer and wedding phase in a Hebrew RTL masonry gallery. The site is live at https://wedding-album.omelcer.workers.dev.
 
-## Current Milestone: v1.3 Lightbox Zoom
-
-**Goal:** Guests can zoom in on individual photos in the lightbox — pinch-to-zoom on mobile and scroll-wheel + drag to pan on desktop.
-
-**Target features:**
-- Pinch-to-zoom in lightbox on mobile (two-finger spread/pinch)
-- Scroll-wheel zoom in lightbox on desktop
-- Drag to pan while zoomed in
-
 ## Core Value
 
 Every guest can find and view every photo from the wedding, filtered by who shot it and when it happened — with zero hosting costs and no maintenance burden.
@@ -49,12 +40,9 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - ✓ Guests can download photos via hover icon on gallery cards — v1.2
 - ✓ Top bar displays 4 Hebrew album link buttons linking to original source albums — v1.2
 - ✓ Album URLs stored in `site/src/config.js` — updatable without touching components — v1.2
-
-### Active (v1.3)
-
-- [ ] Guests can pinch-to-zoom on lightbox images on mobile (ZOOM-01)
-- [ ] Guests can scroll-wheel to zoom in/out on lightbox images on desktop (ZOOM-02)
-- [ ] Guests can drag to pan a zoomed-in lightbox image (ZOOM-03)
+- ✓ Guests can pinch-to-zoom on lightbox images on mobile (ZOOM-01) — v1.3
+- ✓ Guests can scroll-wheel to zoom in/out on lightbox images on desktop (ZOOM-02) — v1.3
+- ✓ Guests can drag to pan a zoomed-in lightbox image (ZOOM-03) — v1.3
 
 ### Planned (v2)
 
@@ -85,6 +73,7 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 - **metadata.json:** 398 KB (1309 photos). Well under 1 MB constraint. Served from `https://pub-db0e5eba70a74d8cbe49b014f6329b9e.r2.dev`.
 - **Security posture (v1.1):** All photos stripped of EXIF before upload. Cache-Control headers set on all R2 objects. Cloudflare billing alerts active. WAF rate-limiting descoped (see Out of Scope).
 - **v1.2 additions:** Download proxy via Worker `/api/download` (Content-Disposition: attachment). TopBar with 4 Hebrew album links. Album URLs in `site/src/config.js`. All 42 tests passing.
+- **v1.3 additions:** yarl Zoom plugin in lightbox — pinch-to-zoom (mobile), scroll-wheel zoom (desktop), drag-to-pan. Zero new npm dependencies. 53 tests passing.
 
 ## Constraints
 
@@ -116,6 +105,9 @@ Every guest can find and view every photo from the wedding, filtered by who shot
 | Worker `/api/download` proxy for downloads | Browser `download` attribute silently ignored for cross-origin URLs; Worker adds `Content-Disposition: attachment` | ✓ Good — downloads work from lightbox and gallery cards |
 | yarl `download: { url, filename }` object form | Modern API; `downloadUrl`/`downloadFilename` string props are deprecated in yarl v3+ | ✓ Good — TypeScript types confirm; 3 tests pass |
 | `ALBUM_LINKS` export in `site/src/config.js` | URLs change; components should not know about specific albums | ✓ Good — URL fix required zero component changes |
+| yarl Zoom plugin via sub-path import | Zero new npm packages — Zoom ships inside `yet-another-react-lightbox@^3.32.0` already installed | ✓ Good — zero dependency footprint |
+| `maxZoomPixelRatio: 3` mandatory | Default of 1 silently disables zoom on all retina/mobile devices — must override | ✓ Good — zoom works on iPhone and HiDPI displays |
+| `pinchZoomV4: true` mandatory | Prevents iOS swipe-block after fast pinch-out; bug fixed in yarl v3.27.0 | ✓ Good — swipe navigation works immediately after pinch-out |
 
 ## Evolution
 
@@ -128,4 +120,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-23 after v1.3 milestone start*
+*Last updated: 2026-05-23 after v1.3 milestone*
