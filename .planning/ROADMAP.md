@@ -48,7 +48,10 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
   3. Top bar displays 4 album link buttons (3 Google Photos + 1 pic-time) on the left side
   4. Clicking any album link opens the source album in a new browser tab
   5. Album URLs can be updated by editing `site/src/config.js` without touching any component file
-**Plans**: TBD
+**Plans**: 3 plans
+  - [ ] 09-01-PLAN.md — Add ALBUM_LINKS to config.js + TopBar component (CONF-01, LINK-01, LINK-02)
+  - [ ] 09-02-PLAN.md — PhotoCard hover-visible download icon (DWNL-02)
+  - [ ] 09-03-PLAN.md — Lightbox yarl Download plugin + per-slide download metadata (DWNL-01)
 **UI hint**: yes
 
 ## Progress
@@ -63,4 +66,4 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 | 6. Pipeline Code Changes | v1.1 | 2/2 | Complete | 2026-05-17 |
 | 7. Cloudflare Hardening | v1.1 | 1/1 | Complete | 2026-05-17 |
 | 8. Re-upload | v1.1 | 1/1 | Complete | 2026-05-18 |
-| 9. Downloads & Album Links | v1.2 | 0/? | Not started | - |
+| 9. Downloads & Album Links | v1.2 | 0/3 | Planning | - |
