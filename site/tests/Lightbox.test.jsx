@@ -13,6 +13,9 @@ vi.mock('yet-another-react-lightbox', () => {
   return { default: mockFn };
 });
 
+// Mock the Download plugin (DWNL-01)
+vi.mock('yet-another-react-lightbox/plugins/download', () => ({ default: 'DownloadPluginMock' }));
+
 // Imports after mocks
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
@@ -112,15 +115,15 @@ describe('Lightbox (GALL-03 + GALL-04)', () => {
     expect(lastCall[0].open).toBe(true);
     expect(lastCall[0].index).toBe(0);
 
-    // slides must match flatFilteredPhotos mapped to { src: r2_url, alt: id }
+    // slides must match flatFilteredPhotos mapped to { src: r2_url, alt: id, download: { url, filename } }
     // PHASE_ORDER = ['prep','photoshooting','dining','hupa','dancing']
     // Photos: prep→[a1,a2], photoshooting→[], dining→[b1,b2], hupa→[], dancing→[a3]
     const expectedSlides = [
-      { src: 'https://r2.example.com/photos/a1.jpg', alt: 'a1' },
-      { src: 'https://r2.example.com/photos/a2.jpg', alt: 'a2' },
-      { src: 'https://r2.example.com/photos/b1.jpg', alt: 'b1' },
-      { src: 'https://r2.example.com/photos/b2.jpg', alt: 'b2' },
-      { src: 'https://r2.example.com/photos/a3.jpg', alt: 'a3' },
+      { src: 'https://r2.example.com/photos/a1.jpg', alt: 'a1', download: { url: 'https://r2.example.com/photos/a1.jpg', filename: 'a1.jpg' } },
+      { src: 'https://r2.example.com/photos/a2.jpg', alt: 'a2', download: { url: 'https://r2.example.com/photos/a2.jpg', filename: 'a2.jpg' } },
+      { src: 'https://r2.example.com/photos/b1.jpg', alt: 'b1', download: { url: 'https://r2.example.com/photos/b1.jpg', filename: 'b1.jpg' } },
+      { src: 'https://r2.example.com/photos/b2.jpg', alt: 'b2', download: { url: 'https://r2.example.com/photos/b2.jpg', filename: 'b2.jpg' } },
+      { src: 'https://r2.example.com/photos/a3.jpg', alt: 'a3', download: { url: 'https://r2.example.com/photos/a3.jpg', filename: 'a3.jpg' } },
     ];
     expect(lastCall[0].slides).toEqual(expectedSlides);
   });
@@ -152,5 +155,50 @@ describe('Lightbox (GALL-03 + GALL-04)', () => {
     expect(slidesSrcs).toContain('https://r2.example.com/photos/a3.jpg');
     expect(slidesSrcs).not.toContain('https://r2.example.com/photos/b1.jpg');
     expect(slidesSrcs).not.toContain('https://r2.example.com/photos/b2.jpg');
+  });
+});
+
+describe('Lightbox (DWNL-01)', () => {
+  beforeEach(() => {
+    yarlMock.mockClear();
+  });
+
+  it('D1 (DWNL-01 plugin registration): opening lightbox passes plugins array containing DownloadPluginMock', () => {
+    render(<TestHarness photos={FIVE_PHOTOS} />);
+    fireEvent.click(screen.getByTestId('photo-a1'));
+
+    const lastCall = yarlMock.mock.calls[yarlMock.mock.calls.length - 1];
+    expect(Array.isArray(lastCall[0].plugins)).toBe(true);
+    expect(lastCall[0].plugins).toContain('DownloadPluginMock');
+  });
+
+  it('D2 (DWNL-01 download metadata): every slide has download.url === r2_url and download.filename === filename', () => {
+    render(<TestHarness photos={FIVE_PHOTOS} />);
+    fireEvent.click(screen.getByTestId('photo-a1'));
+
+    const lastCall = yarlMock.mock.calls[yarlMock.mock.calls.length - 1];
+    const slides = lastCall[0].slides;
+
+    // Each slide download.url must match the photo's r2_url (same as src)
+    slides.forEach(slide => {
+      expect(slide.download).toBeDefined();
+      expect(slide.download.url).toBe(slide.src);
+      expect(typeof slide.download.filename).toBe('string');
+      expect(slide.download.filename.length).toBeGreaterThan(0);
+    });
+
+    // Spot-check specific photos
+    const a1Slide = slides.find(s => s.alt === 'a1');
+    expect(a1Slide.download.url).toBe('https://r2.example.com/photos/a1.jpg');
+    expect(a1Slide.download.filename).toBe('a1.jpg');
+  });
+
+  it('D3 (DWNL-01 Hebrew label): labels.Download is set to Hebrew הורדה', () => {
+    render(<TestHarness photos={FIVE_PHOTOS} />);
+    fireEvent.click(screen.getByTestId('photo-a1'));
+
+    const lastCall = yarlMock.mock.calls[yarlMock.mock.calls.length - 1];
+    expect(lastCall[0].labels).toBeDefined();
+    expect(lastCall[0].labels.Download).toBe('הורדה');
   });
 });
